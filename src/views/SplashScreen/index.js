@@ -36,14 +36,14 @@ export const SplashScreen = () => {
                     village.
                 </p>
             </motion.div>
-            <div className={'content'}>
+            <motion.div className={'content'}>
                 <div className={'dialog-container'}>
                     <Dialog
                         text={'It seems like some foxes are hunting the sheep.'}
                     />
                 </div>
                 <img className={'character'} src={Farmer} />
-            </div>
+            </motion.div>
             <motion.div {...ANIMATION.SLIDE_OUT_LEFT} className={'footer'}>
                 <div className={'mini-chars'}>
                     {MINI_CHARACTERS.map((imgSrc, index) => (

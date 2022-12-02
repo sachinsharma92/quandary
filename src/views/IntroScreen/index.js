@@ -7,6 +7,7 @@ import MiniChar4 from '../../assets/images/mini-char4.png';
 import {Button} from '../../components/Button';
 import {motion} from 'framer-motion';
 import {ANIMATION} from '../../utils/constants/index.js';
+import {useHistory} from 'react-router-dom';
 
 const MINI_CHARACTERS = [
     MiniChar1,
@@ -31,8 +32,10 @@ const EXAMPLES = [
     },
 ];
 export const IntroScreen = () => {
+    const history = useHistory();
     return (
         <motion.div {...ANIMATION.ENTRY_ANIMATION} className={'intro-screen'}>
+
             <div className="background-layer" />
             <div className="background-layer-2" />
             <motion.div {...ANIMATION.SLIDE_IN_LEFT} className={'heading'}>
@@ -63,7 +66,12 @@ export const IntroScreen = () => {
                     These 6 villagers have something to say to you. Go ahead to
                     read their viewpoints.
                 </p>
-                <Button label={'Next'} />
+                <Button
+                    onClick={() => {
+                        history.push('/questions');
+                    }}
+                    label={'Next'}
+                />
             </motion.div>
         </motion.div>
     );
