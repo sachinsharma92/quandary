@@ -50,6 +50,7 @@
     .heading {
         background: rgba(255, 255, 255, 0.19);
         backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
         border-radius: 12px;
         height: fit-content;
         padding: 10px;
@@ -95,6 +96,7 @@
     .footer {
         background: rgba(255, 255, 255, 0.19);
         backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
         border-radius: 12px;
         padding: 16px 40px;
         display: flex;

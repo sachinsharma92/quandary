@@ -34,6 +34,7 @@
     .heading {
         background: rgba(255, 255, 255, 0.19);
         backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
         border-radius: 12px;
         height: fit-content;
         padding: 10px;
@@ -55,21 +56,24 @@
     .content {
         position: absolute;
         right: 0;
-        bottom: 15vh;
+        bottom: 17vh;
         z-index: 0;
+
         .dialog-container {
             position: absolute;
             right: 5vw;
             top: 2vh;
         }
+
         .character {
-            width: 35vh;
+            width: 33vh;
         }
     }
 
     .footer {
         background: rgba(255, 255, 255, 0.19);
         backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
         border-radius: 12px;
         padding: 16px 40px;
         display: flex;
