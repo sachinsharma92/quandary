@@ -42,7 +42,7 @@ export const SplashScreen = () => {
                         text={'It seems like some foxes are hunting the sheep.'}
                     />
                 </div>
-                <img src={Farmer} />
+                <img className={'character'} src={Farmer} />
             </div>
             <motion.div {...ANIMATION.SLIDE_OUT_LEFT} className={'footer'}>
                 <div className={'mini-chars'}>

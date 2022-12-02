@@ -56,11 +56,14 @@
         position: absolute;
         right: 0;
         bottom: 15vh;
-
+        z-index: 0;
         .dialog-container {
             position: absolute;
             right: 5vw;
             top: 2vh;
+        }
+        .character {
+            width: 35vh;
         }
     }
 
