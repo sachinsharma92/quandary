@@ -69,14 +69,26 @@
     }
 
     .content {
-        position: absolute;
-        right: 0;
-        bottom: 15vh;
+        display: flex;
+        flex-direction: column;
+        z-index: 0;
+        > div {
+            margin-bottom: 12px;
+            p {
+                margin: 0;
+                font-family: 'Baloo Chettan 2';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: -0.2px;
+                color: #ffffff;
+                text-align: center;
 
-        .dialog-container {
-            position: absolute;
-            right: 5vw;
-            top: 2vh;
+                &:nth-of-type(2) {
+                    opacity: 0.5;
+                }
+            }
         }
     }
 

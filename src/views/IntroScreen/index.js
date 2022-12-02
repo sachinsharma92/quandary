@@ -4,9 +4,9 @@ import MiniChar1 from '../../assets/images/mini-char1.png';
 import MiniChar2 from '../../assets/images/mini-char2.png';
 import MiniChar3 from '../../assets/images/mini-char3.png';
 import MiniChar4 from '../../assets/images/mini-char4.png';
-import Farmer from '../../assets/images/farmer.png';
 import {Button} from '../../components/Button';
-import {Dialog} from '../../components/Dialog/index.js';
+import {motion} from 'framer-motion';
+import {ANIMATION} from '../../utils/constants/index.js';
 
 const MINI_CHARACTERS = [
     MiniChar1,
@@ -16,23 +16,47 @@ const MINI_CHARACTERS = [
     MiniChar2,
     MiniChar1,
 ];
-
+const EXAMPLES = [
+    {
+        trait: 'Fact',
+        example: 'Example: Foxes can run very fast.',
+    },
+    {
+        trait: 'Opinion',
+        example: 'Example: I really hate foxes.',
+    },
+    {
+        trait: 'Idea',
+        example: 'Example: We should build a trap.',
+    },
+];
 export const IntroScreen = () => {
     return (
-        <div className={'intro-screen'}>
+        <motion.div {...ANIMATION.ENTRY_ANIMATION} className={'intro-screen'}>
             <div className="background-layer" />
             <div className="background-layer-2" />
-            <div className={'heading'}>
+            <motion.div {...ANIMATION.SLIDE_IN_LEFT} className={'heading'}>
                 <p>
                     Before making your decison, listen to the views of the
                     villagers and sort them as facts, opinions or ideas.
                 </p>
-            </div>
-
-            <div className={'footer'}>
+            </motion.div>
+            <motion.div {...ANIMATION.ENTRY_ANIMATION} className={'content'}>
+                {EXAMPLES.map((row, index) => (
+                    <div key={index}>
+                        <p>{row.trait}</p>
+                        <p>{row.example}</p>
+                    </div>
+                ))}
+            </motion.div>
+            <motion.div {...ANIMATION.SLIDE_IN_LEFT} className={'footer'}>
                 <div className={'mini-chars'}>
                     {MINI_CHARACTERS.map((imgSrc, index) => (
-                        <img src={imgSrc} style={{marginLeft: -10}} />
+                        <img
+                            key={index}
+                            src={imgSrc}
+                            style={{marginLeft: -10}}
+                        />
                     ))}
                 </div>
                 <p>
@@ -40,7 +64,7 @@ export const IntroScreen = () => {
                     read their viewpoints.
                 </p>
                 <Button label={'Next'} />
-            </div>
-        </div>
+            </motion.div>
+        </motion.div>
     );
 };

@@ -8,20 +8,34 @@ import Farmer from '../../assets/images/farmer.png';
 import {Button} from '../../components/Button';
 import {Dialog} from '../../components/Dialog/index.js';
 import {useHistory} from 'react-router-dom';
+import {motion} from 'framer-motion';
+import {ANIMATION} from '../../utils/constants/index.js';
 
 const MINI_CHARACTERS = [MiniChar1, MiniChar2, MiniChar3, MiniChar4];
-
+const containerVariants = {
+    hidden: {
+        opacity: 0,
+    },
+    visible: {
+        opacity: 1,
+        transition: {duration: 1, delay: 0.1},
+    },
+    exit: {
+        // x: '-100vw',
+        transition: {ease: 'easeInOut'},
+    },
+};
 export const SplashScreen = () => {
     const history = useHistory();
     return (
-        <div className={'splash-screen'}>
+        <motion.div {...ANIMATION.ENTRY_ANIMATION} className={'splash-screen'}>
             <div className="background-layer" />
-            <div className={'heading'}>
+            <motion.div {...ANIMATION.SLIDE_OUT_LEFT} className={'heading'}>
                 <p>
                     Three weeks ago, a few sheep started disappearing from our
                     village.
                 </p>
-            </div>
+            </motion.div>
             <div className={'content'}>
                 <div className={'dialog-container'}>
                     <Dialog
@@ -30,15 +44,19 @@ export const SplashScreen = () => {
                 </div>
                 <img src={Farmer} />
             </div>
-            <div className={'footer'}>
+            <motion.div {...ANIMATION.SLIDE_OUT_LEFT} className={'footer'}>
                 <div className={'mini-chars'}>
                     {MINI_CHARACTERS.map((imgSrc, index) => (
-                        <img src={imgSrc} style={{marginLeft: -10}} />
+                        <img
+                            key={index}
+                            src={imgSrc}
+                            style={{marginLeft: -10}}
+                        />
                     ))}
                 </div>
                 <p>The villagers need your help in solving this problem.</p>
-                <Button onClick={()=>history.push('/intro')} label={'Next'} />
-            </div>
-        </div>
+                <Button onClick={() => history.push('/intro')} label={'Next'} />
+            </motion.div>
+        </motion.div>
     );
 };
