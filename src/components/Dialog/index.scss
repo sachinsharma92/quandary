@@ -1,0 +1,25 @@
+.dialog-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 10px 20px;
+    width: max-content;
+    max-width: 60%;
+    position: relative;
+    p {
+        margin: 0;
+        font-family: 'IBM Plex Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 18px;
+        letter-spacing: -0.152174px;
+
+        color: #2e1500;
+    }
+    .pointer {
+        position: absolute;
+        right: -11vw;
+        top: 0;
+        transform: scale(0.4);
+    }
+}

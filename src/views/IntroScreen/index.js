@@ -7,37 +7,39 @@ import MiniChar4 from '../../assets/images/mini-char4.png';
 import Farmer from '../../assets/images/farmer.png';
 import {Button} from '../../components/Button';
 import {Dialog} from '../../components/Dialog/index.js';
-import {useHistory} from 'react-router-dom';
 
-const MINI_CHARACTERS = [MiniChar1, MiniChar2, MiniChar3, MiniChar4];
+const MINI_CHARACTERS = [
+    MiniChar1,
+    MiniChar2,
+    MiniChar3,
+    MiniChar4,
+    MiniChar2,
+    MiniChar1,
+];
 
-export const SplashScreen = () => {
-    const history = useHistory();
+export const IntroScreen = () => {
     return (
-        <div className={'splash-screen'}>
+        <div className={'intro-screen'}>
             <div className="background-layer" />
+            <div className="background-layer-2" />
             <div className={'heading'}>
                 <p>
-                    Three weeks ago, a few sheep started disappearing from our
-                    village.
+                    Before making your decison, listen to the views of the
+                    villagers and sort them as facts, opinions or ideas.
                 </p>
             </div>
-            <div className={'content'}>
-                <div className={'dialog-container'}>
-                    <Dialog
-                        text={'It seems like some foxes are hunting the sheep.'}
-                    />
-                </div>
-                <img src={Farmer} />
-            </div>
+
             <div className={'footer'}>
                 <div className={'mini-chars'}>
                     {MINI_CHARACTERS.map((imgSrc, index) => (
                         <img src={imgSrc} style={{marginLeft: -10}} />
                     ))}
                 </div>
-                <p>The villagers need your help in solving this problem.</p>
-                <Button onClick={()=>history.push('/intro')} label={'Next'} />
+                <p>
+                    These 6 villagers have something to say to you. Go ahead to
+                    read their viewpoints.
+                </p>
+                <Button label={'Next'} />
             </div>
         </div>
     );

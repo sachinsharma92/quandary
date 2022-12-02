@@ -26,4 +26,5 @@ body {
 }
 .app-container {
     height: 100%;
+    background: linear-gradient(180deg, #12061c 0%, #0b0311 100%);
 }

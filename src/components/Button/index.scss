@@ -7,4 +7,19 @@
     border: 1px solid #ffffff;
     backdrop-filter: blur(22px);
     border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 13px 30px;
+    img {
+        padding-left: 20px;
+    }
 }
