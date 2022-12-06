@@ -52,7 +52,7 @@ export const QuestionScreen = () => {
                         }}
                         animate={{
                             opacity: 1,
-                            translateY: '46vh',
+                            translateY: '34vh',
                             transition: {
                                 duration: 1,
                                 type: 'spring',
@@ -76,7 +76,7 @@ export const QuestionScreen = () => {
                     <motion.img
                         key={currentStep}
                         style={{
-                            translateY: '14vh',
+                            translateY: '3vh',
                         }}
                         initial={{
                             opacity: 0,
@@ -84,7 +84,7 @@ export const QuestionScreen = () => {
                         }}
                         animate={{
                             opacity: 1,
-                            translateX: '30vw',
+                            translateX: '32vw',
                             transition: {
                                 type: 'spring',
                                 duration: 1.4,
