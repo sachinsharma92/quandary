@@ -15,7 +15,7 @@ export const QuestionScreen = () => {
         5: '',
         6: '',
     });
-
+    console.log(answers);
     return (
         <motion.div
             {...ANIMATION.ENTRY_ANIMATION}
@@ -32,7 +32,7 @@ export const QuestionScreen = () => {
                             opacity: 1,
                             transition: {
                                 duration: 0.6,
-                                delay: currentStep > 0 ? 2 : 1,
+                                delay: currentStep > 0 ? 1.8 : 1,
                             },
                         }}
                         exit={{
@@ -56,7 +56,7 @@ export const QuestionScreen = () => {
                             transition: {
                                 duration: 1,
                                 type: 'spring',
-                                delay: currentStep > 0 ? 2.68 : 1.5,
+                                delay: currentStep > 0 ? 2.3 : 1.5,
                             },
                         }}
                         exit={{
@@ -109,7 +109,7 @@ export const QuestionScreen = () => {
                     translateY: 0,
                     transition: {
                         duration: 1,
-                        delay: currentStep > 0 ? 2.7 : 1.5,
+                        delay: currentStep > 0 ? 2.3 : 1.5,
                         type: 'spring',
                     },
                 }}
