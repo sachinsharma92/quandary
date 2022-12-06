@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
 import './index.scss';
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import {ANIMATION, OPTIONS, QUESTIONS} from '../../utils/constants/index.js';
 import {Button} from '../../components/Button';
 import {Dialog} from '../../components/Dialog/index.js';
-import Farmer from '../../assets/images/farmer.png';
 
 export const QuestionScreen = () => {
     const [currentStep, setCurrentStep] = useState(0);
+    const [answers, setAnswers] = useState({
+        1: '',
+        2: '',
+        3: '',
+        4: '',
+        5: '',
+        6: '',
+    });
 
     return (
         <motion.div
@@ -16,66 +23,102 @@ export const QuestionScreen = () => {
         >
             <div className="background-layer" />
             <div className="content">
-                <motion.div
-                    initial={{
-                        opacity: 0,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        transition: {duration: 0.6, delay: 1.6},
-                    }}
-                    className={'dialog-container'}
-                >
-                    <Dialog text={QUESTIONS[currentStep].dialog} />
-                </motion.div>
-                <motion.div
-                    initial={{
-                        opacity: 0,
-                        bottom: 0,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        translateY: '-47vh',
-                        transition: {
-                            duration: 1,
-                            type: 'spring',
-                            delay: 1,
-                        },
-                    }}
-                    className="details"
-                >
-                    <p>{QUESTIONS[currentStep].name}</p>
-                    <p>
-                        {QUESTIONS[currentStep].designation} •{' '}
-                        {QUESTIONS[currentStep].age}
-                    </p>
-                </motion.div>
-                <motion.img
-                    initial={{
-                        opacity: 0,
-                        bottom: 0,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        translateY: '-17vh',
-                        transition: {
-                            duration: 1,
-                            type: 'spring',
-                            delay: 1,
-                        },
-                    }}
-                    className={'character'}
-                    src={QUESTIONS[currentStep].characterImage}
-                />
+                <AnimatePresence>
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            transition: {
+                                duration: 0.6,
+                                delay: currentStep > 0 ? 2 : 1,
+                            },
+                        }}
+                        exit={{
+                            opacity: 0,
+                        }}
+                        key={currentStep}
+                        className={'dialog-container'}
+                    >
+                        <Dialog text={QUESTIONS[currentStep].dialog} />
+                    </motion.div>
+                </AnimatePresence>
+                <AnimatePresence>
+                    <motion.div
+                        initial={{
+                            opacity: 0,
+                            translateY: '100vh',
+                        }}
+                        animate={{
+                            opacity: 1,
+                            translateY: '46vh',
+                            transition: {
+                                duration: 1,
+                                type: 'spring',
+                                delay: currentStep > 0 ? 2.68 : 1.5,
+                            },
+                        }}
+                        exit={{
+                            opacity: 0,
+                        }}
+                        key={currentStep}
+                        className="details"
+                    >
+                        <p>{QUESTIONS[currentStep].name}</p>
+                        <p>
+                            {QUESTIONS[currentStep].designation} •{' '}
+                            {QUESTIONS[currentStep].age}
+                        </p>
+                    </motion.div>
+                </AnimatePresence>
+                <AnimatePresence>
+                    <motion.img
+                        key={currentStep}
+                        style={{
+                            translateY: '14vh',
+                        }}
+                        initial={{
+                            opacity: 0,
+                            translateX: '100vw',
+                        }}
+                        animate={{
+                            opacity: 1,
+                            translateX: '30vw',
+                            transition: {
+                                type: 'spring',
+                                duration: 1.4,
+                                delay: currentStep > 0 ? 1 : 0.2,
+                            },
+                        }}
+                        exit={{
+                            opacity: 0,
+                            translateX: '100vw',
+                            transition: {delay: 0.15, duration: 0.7},
+                        }}
+                        className={'character'}
+                        src={QUESTIONS[currentStep].characterImage}
+                    />
+                </AnimatePresence>
             </div>
             <motion.div
                 initial={{
-                    y: '100vh',
+                    translateY: '100vh',
                 }}
                 animate={{
-                    y: 0,
-                    transition: {duration: 1},
+                    translateY: 0,
+                    transition: {
+                        duration: 1,
+                        delay: currentStep > 0 ? 2.7 : 1.5,
+                        type: 'spring',
+                    },
                 }}
+                exit={{
+                    opacity: 0,
+                    translateY: '100vh',
+                    transition: {delay: 2, duration: 0.7},
+                }}
+                key={currentStep}
                 className={'options-container'}
             >
                 <div>
@@ -85,10 +128,21 @@ export const QuestionScreen = () => {
                     <div className="options">
                         {OPTIONS.map((item, index) => (
                             <motion.div
+                                onClick={() => {
+                                    setAnswers((prevState) => ({
+                                        ...prevState,
+                                        [currentStep + 1]: item,
+                                    }));
+                                }}
                                 whileTap={{
                                     scale: 1.05,
                                 }}
                                 key={index}
+                                className={`${
+                                    answers[currentStep + 1] === item
+                                        ? 'active'
+                                        : ''
+                                }`}
                             >
                                 <p>{item}</p>
                             </motion.div>
@@ -102,11 +156,13 @@ export const QuestionScreen = () => {
                         <span>/{QUESTIONS.length} villager</span>
                     </div>
                     <Button
-                        onClick={() => {
-                            if (currentStep < QUESTIONS.length - 1)
-                                setCurrentStep((prevState) => prevState + 1);
-                        }}
                         label={'Next'}
+                        disabled={answers[currentStep + 1] === ''}
+                        onClick={() => {
+                            if (currentStep < QUESTIONS.length - 1) {
+                                setCurrentStep((prevState) => prevState + 1);
+                            }
+                        }}
                     />
                 </div>
             </motion.div>

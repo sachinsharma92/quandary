@@ -3,14 +3,22 @@ import RightChevron from '../../assets/images/right-chevron.svg';
 import './index.scss';
 import {motion} from 'framer-motion';
 
-export const Button = ({label, onClick}) => {
+export const Button = ({
+    label,
+    onClick,
+    disabled,
+    className = '',
+    ...props
+}) => {
     return (
         <motion.button
             whileTap={{
-                scale: 1.12,
+                scale: disabled ? 1 : 1.12,
             }}
+            disabled={disabled}
             onClick={onClick}
-            className={'primary-button'}
+            {...props}
+            className={`primary-button ${className}`}
         >
             {label}
             <img src={RightChevron} />

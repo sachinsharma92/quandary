@@ -5,7 +5,6 @@
     height: 100%;
     position: relative;
     overflow: hidden;
-
     &:before {
         content: ' ';
         background-image: url('../../assets/images/sheep-food.png');
@@ -14,7 +13,7 @@
         position: absolute;
         width: 700px;
         height: 700px;
-        filter: blur(6px);
+        filter: brightness(0.4);
         left: -39vw;
         top: 1vh;
         transform: scale(0.8);
@@ -26,12 +25,12 @@
         position: absolute;
         top: 0;
         left: 0;
-        background: radial-gradient(
-            366.71% 121.89% at 50% -15.38%,
-            rgba(4, 6, 12, 0.58) 0%,
-            rgba(4, 6, 12, 0.876204) 39.37%,
-            #000000 79.63%
+        background: linear-gradient(
+            180deg,
+            rgba(17, 13, 27, 0.87) 0%,
+            rgba(13, 5, 23, 0.87) 70.67%
         );
+        mix-blend-mode: normal;
     }
     .content {
         z-index: 0;
@@ -45,7 +44,7 @@
         .details {
             position: absolute;
             left: 6vw;
-            transform: translateY(100vh);
+            //transform: translateY(100vh);
             p {
                 margin: 0;
                 &:nth-of-type(1) {
@@ -74,14 +73,11 @@
         }
         .character {
             position: absolute;
-            right: 0;
             width: 45vh;
-            transform: translateY(100vh);
+            transform: translateY(14vh);
         }
     }
     .options-container {
-        background: linear-gradient(345.7deg, #1b1d24 10.55%, #04060c 96.76%);
-        box-shadow: 0px -6px 15px rgba(0, 0, 0, 0.55);
         height: 45vh;
         position: absolute;
         bottom: 0;
@@ -109,20 +105,34 @@
             margin-top: 20px;
 
             > div {
-                background: linear-gradient(
-                    88.4deg,
-                    rgba(255, 255, 255, 0.16) -5.78%,
-                    rgba(152, 140, 130, 0) 46.15%,
-                    rgba(222, 222, 222, 0.06) 99.76%
-                );
-                backdrop-filter: blur(3px);
-                border-radius: 18px;
                 margin-bottom: 15px;
                 padding: 16px;
-                border: #fff 1px solid;
+                background: linear-gradient(
+                    112.88deg,
+                    rgba(255, 255, 255, 0.18) -1.79%,
+                    rgba(255, 255, 255, 0) 103.17%
+                );
+                -webkit-backdrop-filter: blur(22px);
+                backdrop-filter: blur(22px);
+                border-radius: 20px;
+                border: 1px solid #e1c9ff;
+                transition: all 0.3s linear;
+                &.active {
+                    transition: all 0.3s linear;
+                    background: linear-gradient(
+                        112.88deg,
+                        #ffffff -1.79%,
+                        #cac0d5 103.17%
+                    );
+                    p {
+                        border: none;
+                        color: #0d0517;
+                        text-shadow: 0px 4px 13px rgba(0, 0, 0, 0.25);
+                    }
+                }
                 p {
                     margin: 0;
-                    font-family: 'Baloo Chettan 2';
+                    font-family: Inter;
                     font-style: normal;
                     font-weight: 500;
                     font-size: 16px;

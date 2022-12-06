@@ -32,17 +32,22 @@
     }
 
     .heading {
-        background: rgba(255, 255, 255, 0.19);
-        backdrop-filter: blur(17px);
-        -webkit-backdrop-filter: blur(17px);
-        border-radius: 12px;
         height: fit-content;
-        padding: 10px;
         max-width: 80%;
         align-self: center;
+        backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
+        border: 1px solid #5a4c90;
+        padding: 10px;
+        background: linear-gradient(
+            261.04deg,
+            rgba(90, 76, 144, 0.19) -5.42%,
+            rgba(43, 29, 80, 0) 94.95%
+        );
+        border-radius: 12px;
         p {
             margin: 0;
-            font-family: 'IBM Plex Sans';
+            font-family: 'Inter';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;
@@ -72,14 +77,19 @@
     }
 
     .footer {
-        background: rgba(255, 255, 255, 0.19);
-        backdrop-filter: blur(17px);
-        -webkit-backdrop-filter: blur(17px);
         border-radius: 12px;
         padding: 16px 40px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
+        border: 1px solid #5a4c90;
+        background: linear-gradient(
+            261.04deg,
+            rgba(90, 76, 144, 0.19) -5.42%,
+            rgba(43, 29, 80, 0) 94.95%
+        );
 
         .mini-chars {
             display: flex;
@@ -96,7 +106,7 @@
 
         p {
             margin: 0;
-            font-family: 'IBM Plex Sans';
+            font-family: 'Inter';
             font-style: normal;
             font-weight: 400;
             font-size: 14px;

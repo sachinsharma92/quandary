@@ -4,7 +4,7 @@ import MiniChar1 from '../../assets/images/mini-char1.png';
 import MiniChar2 from '../../assets/images/mini-char2.png';
 import MiniChar3 from '../../assets/images/mini-char3.png';
 import MiniChar4 from '../../assets/images/mini-char4.png';
-import Farmer from '../../assets/images/farmer.png';
+import Farmer from '../../assets/images/farmer-full.png';
 import {Button} from '../../components/Button';
 import {Dialog} from '../../components/Dialog/index.js';
 import {useHistory} from 'react-router-dom';

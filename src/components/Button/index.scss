@@ -1,11 +1,6 @@
 .primary-button {
-    background: linear-gradient(
-        112.88deg,
-        rgba(255, 255, 255, 0.38) -1.79%,
-        rgba(255, 255, 255, 0) 103.17%
-    );
-    border: 1px solid #ffffff;
     backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
@@ -19,7 +14,20 @@
     color: #ffffff;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 13px 30px;
+    background: linear-gradient(
+        112.88deg,
+        rgba(255, 255, 255, 0.18) -1.79%,
+        rgba(255, 255, 255, 0) 103.17%
+    );
+    border: 1px solid #dbbeff;
+    opacity: 1;
+    transition: opacity 0.3s linear;
     img {
         padding-left: 20px;
+    }
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.4;
+        transition: opacity 0.3s linear;
     }
 }
