@@ -17,7 +17,7 @@ export const SolutionAccordion = ({
     return (
         <motion.div
             whileTap={{
-                scale: 1.05,
+                scale: 1.04,
             }}
             onClick={() => onToggleSelect(id)}
             initial={{
@@ -33,7 +33,22 @@ export const SolutionAccordion = ({
             }}
             className={`solution-row ${isSelected ? 'active' : ''}`}
         >
-            <div className={'solution-row-content'}>
+            <motion.div
+                initial={{
+                    opacity: 0,
+                }}
+                animate={{
+                    opacity: isSelected ? 1 : 0,
+                    transition: {duration: 0.3},
+                }}
+                exit={{
+                    opacity: 0,
+                }}
+                className={`active-layer ${isSelected ? 'active' : ''}`}
+            />
+            <div
+                className={`solution-row-content ${isSelected ? 'active' : ''}`}
+            >
                 <div style={{display: 'flex', alignItems: 'center'}}>
                     <img src={icon} />
                     <div style={{marginLeft: 8}}>
@@ -60,7 +75,7 @@ export const SolutionAccordion = ({
                         opacity: 1,
                         transition: {duration: 0.35, delay: 0.1},
                     }}
-                    className={'expanded-content'}
+                    className={`expanded-content ${isSelected ? 'active' : ''}`}
                 >
                     <div className="separator" />
                     <p className={'comment'}>{readMoreContent.comment}</p>
