@@ -1,12 +1,15 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import './index.scss';
 import {AnimatePresence, motion} from 'framer-motion';
 import {ANIMATION, OPTIONS, QUESTIONS} from '../../utils/constants/index.js';
 import {Button} from '../../components/Button';
 import {Dialog} from '../../components/Dialog/index.js';
-
+import InfoIcon from '../../assets/images/info-icon.svg';
+import {BottomSheet} from '../../components/BottomSheet/index.js';
+import {InfoContent} from '../../components/InfoContent/index.js';
 export const QuestionScreen = () => {
     const [currentStep, setCurrentStep] = useState(0);
+    const bottomSheetRef = useRef();
     const [answers, setAnswers] = useState({
         1: '',
         2: '',
@@ -124,6 +127,13 @@ export const QuestionScreen = () => {
                 <div>
                     <p className={'question'}>
                         Is this statement a fact, opinion or idea?
+                        <motion.img
+                            onClick={() => {
+                                bottomSheetRef.current.open();
+                            }}
+                            whileTap={{scale: 1.15}}
+                            src={InfoIcon}
+                        />
                     </p>
                     <div className="options">
                         {OPTIONS.map((item, index) => (
@@ -166,6 +176,9 @@ export const QuestionScreen = () => {
                     />
                 </div>
             </motion.div>
+            <BottomSheet ref={bottomSheetRef}>
+                <InfoContent />
+            </BottomSheet>
         </motion.div>
     );
 };
