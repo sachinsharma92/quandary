@@ -7,7 +7,10 @@ import {Dialog} from '../../components/Dialog/index.js';
 import InfoIcon from '../../assets/images/info-icon.svg';
 import {BottomSheet} from '../../components/BottomSheet/index.js';
 import {InfoContent} from '../../components/InfoContent/index.js';
+import {useHistory} from 'react-router-dom';
+
 export const QuestionScreen = () => {
+    const history = useHistory();
     const [currentStep, setCurrentStep] = useState(0);
     const bottomSheetRef = useRef();
     const [answers, setAnswers] = useState({
@@ -19,6 +22,7 @@ export const QuestionScreen = () => {
         6: '',
     });
     console.log(answers);
+    console.log(currentStep);
     return (
         <motion.div
             {...ANIMATION.ENTRY_ANIMATION}
@@ -97,7 +101,16 @@ export const QuestionScreen = () => {
                         exit={{
                             opacity: 0,
                             translateX: '100vw',
-                            transition: {delay: 0.15, duration: 0.7},
+                            transition: {
+                                delay:
+                                    currentStep === QUESTIONS.length - 1
+                                        ? 0
+                                        : 0.15,
+                                duration:
+                                    currentStep === QUESTIONS.length - 1
+                                        ? 0
+                                        : 0.7,
+                            },
                         }}
                         className={'character'}
                         src={QUESTIONS[currentStep].characterImage}
@@ -119,7 +132,11 @@ export const QuestionScreen = () => {
                 exit={{
                     opacity: 0,
                     translateY: '100vh',
-                    transition: {delay: 2, duration: 0.7},
+                    transition: {
+                        delay: currentStep === QUESTIONS.length - 1 ? 0 : 2,
+                        duration:
+                            currentStep === QUESTIONS.length - 1 ? 0 : 0.7,
+                    },
                 }}
                 key={currentStep}
                 className={'options-container'}
@@ -171,7 +188,7 @@ export const QuestionScreen = () => {
                         onClick={() => {
                             if (currentStep < QUESTIONS.length - 1) {
                                 setCurrentStep((prevState) => prevState + 1);
-                            }
+                            } else history.push('/user-choice');
                         }}
                     />
                 </div>
