@@ -1,0 +1,114 @@
+.user-choice-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 25px;
+    justify-content: space-between;
+
+    &:before {
+        content: ' ';
+        background-image: url('../../assets/images/intro-animal-bg.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        filter: brightness(0.8);
+        left: -39vw;
+        top: 1vh;
+        transform: scale(0.8);
+    }
+
+    .background-layer {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(17, 13, 27, 0.87) 0%,
+            rgba(13, 5, 23, 0.87) 70.67%
+        );
+        mix-blend-mode: normal;
+    }
+
+    .content {
+        z-index: 0;
+
+        .dialog-container {
+            position: absolute;
+            top: 10vh;
+            left: 10vw;
+            max-width: 84%;
+            z-index: 1;
+        }
+
+        .details {
+            position: absolute;
+            left: 6vw;
+            //transform: translateY(100vh);
+            p {
+                margin: 0;
+
+                &:nth-of-type(1) {
+                    font-family: 'Baloo Chettan 2';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 20px;
+                    display: flex;
+                    align-items: center;
+                    letter-spacing: -0.2px;
+                    color: #ffffff;
+                    margin-bottom: 6px;
+                }
+
+                &:nth-of-type(2) {
+                    font-family: 'Baloo Chettan 2';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 20px;
+                    display: flex;
+                    align-items: center;
+                    color: #b6b6b6;
+                }
+            }
+        }
+
+        .character {
+            position: absolute;
+            width: 45vh;
+            transform: translateY(14vh);
+        }
+    }
+
+    .heading {
+        z-index: 0;
+        margin-top: 3vh;
+
+        p {
+            margin: 0;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 23px;
+            text-align: center;
+            letter-spacing: -0.152174px;
+            color: #ffffff;
+
+            &:nth-of-type(1) {
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    .solutions {
+        z-index: 0;
+        margin-top: 20px;
+    }
+}
