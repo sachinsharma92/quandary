@@ -4,8 +4,10 @@ import {AnimatePresence, motion} from 'framer-motion';
 import {ANIMATION, SOLUTIONS} from '../../utils/constants/index.js';
 import {SolutionAccordion} from '../../components/SolutionAccordion';
 import {Button} from '../../components/Button';
+import {useHistory} from 'react-router-dom';
 
 export const UserChoiceScreen = () => {
+    const history = useHistory();
     const [expandedSolutionId, setExpandedSolutionId] = useState(null);
     const [isSelected, setIsSelected] = useState([]);
 
@@ -71,7 +73,14 @@ export const UserChoiceScreen = () => {
                         exit={{opacity: 0}}
                         style={{alignSelf: 'flex-end'}}
                     >
-                        <Button label={'Next'} />
+                        <Button
+                            onClick={() =>
+                                history.push('/user-choice-preview', {
+                                    choices: isSelected,
+                                })
+                            }
+                            label={'Next'}
+                        />
                     </motion.div>
                 )}
             </AnimatePresence>

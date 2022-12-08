@@ -8,6 +8,7 @@ export const Button = ({
     onClick,
     disabled,
     className = '',
+    showArrow = true,
     ...props
 }) => {
     return (
@@ -21,7 +22,7 @@ export const Button = ({
             className={`primary-button ${className}`}
         >
             {label}
-            <img src={RightChevron} />
+            {showArrow && <img src={RightChevron} />}
         </motion.button>
     );
 };
