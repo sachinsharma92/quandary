@@ -1,24 +1,23 @@
 import React from 'react';
 import './index.scss';
-import Farmer from '../../assets/images/farmer-full.png';
 import {Button} from '../../components/Button';
-import {Dialog} from '../../components/Dialog/index.js';
-import {useHistory} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {ANIMATION} from '../../utils/constants/index.js';
+import {ANIMATION, IMPACTS} from '../../utils/constants/index.js';
+import {useHistory} from 'react-router-dom';
+import {Dialog} from '../../components/Dialog/index.js';
+import FarmerImage from '../../assets/images/farmer-full.png';
 
-export const SplashScreen = () => {
+export const ImpactScreen = () => {
     const history = useHistory();
+    const {decision = ''} = history.location.state || {};
+
     return (
-        <motion.div {...ANIMATION.ENTRY_ANIMATION} className={'splash-screen'}>
-            <div className="background-layer" />
-            <motion.div {...ANIMATION.SLIDE_OUT_LEFT} className={'heading'}>
-                <p>
-                    Three weeks ago, a few sheep started disappearing from our
-                    village.
-                </p>
+        <div className={'impact-screen'}>
+            <div className="background-layer-2" />
+            <motion.div {...ANIMATION.REVEAL} className={'heading'}>
+                <p>{IMPACTS[decision].heading}</p>
             </motion.div>
-            <div className={'content'}>
+            <div className="contents">
                 <motion.div
                     initial={{
                         opacity: 0,
@@ -28,7 +27,7 @@ export const SplashScreen = () => {
                         opacity: 1,
                         translateX: 0,
                         transition: {
-                            delay: 0.9,
+                            delay: 0.8,
                             type: 'spring',
                             stiffness: 50,
                         },
@@ -38,16 +37,14 @@ export const SplashScreen = () => {
                     }}
                     className={'dialog-container'}
                 >
-                    <Dialog
-                        text={'It seems like some foxes are hunting the sheep.'}
-                    />
+                    <Dialog text={IMPACTS[decision].statement} />
                 </motion.div>
                 <motion.img
                     initial={{
                         translateX: '100vw',
                     }}
                     animate={{
-                        translateX: 0,
+                        translateX: '27vw',
                         transition: {
                             delay: 0.8,
                             type: 'spring',
@@ -56,26 +53,33 @@ export const SplashScreen = () => {
                     }}
                     exit={{opacity: 0}}
                     className={'character'}
-                    src={Farmer}
+                    src={FarmerImage}
                 />
             </div>
             <motion.div
                 initial={{
-                    translateY: '30vh',
+                    opacity: 0,
                 }}
                 animate={{
-                    translateY: 0,
+                    opacity: 1,
                     transition: {
-                        delay: 2.5,
-                        type: 'spring',
-                        stiffness: 50,
+                        delay: 1.8,
                     },
+                }}
+                exit={{
+                    opacity: 0,
                 }}
                 className={'footer'}
             >
-                <p>The villagers need your help in solving this problem.</p>
-                <Button onClick={() => history.push('/intro')} label={'Next'} />
+                <Button
+                    onClick={() => {
+                        history.push('/impact-solutions', {
+                            decision,
+                        });
+                    }}
+                    label={'Next'}
+                />
             </motion.div>
-        </motion.div>
+        </div>
     );
 };

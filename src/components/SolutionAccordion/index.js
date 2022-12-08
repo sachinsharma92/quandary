@@ -22,12 +22,19 @@ export const SolutionAccordion = ({
             onClick={() => onToggleSelect(id)}
             initial={{
                 opacity: 0,
+                translateY: '100vh',
             }}
-            animate={{
-                opacity: 1,
-                height: isExpanded ? 195 : 80,
-                transition: {duration: 0.35},
-            }}
+            animate={[
+                {
+                    opacity: 1,
+                    height: isExpanded ? 195 : 80,
+                    transition: {duration: 0.35},
+                },
+                {
+                    translateY: 0,
+                    transition: {delay: 0.8, type: 'spring', stiffness: 45},
+                },
+            ]}
             exit={{
                 height: 'auto',
             }}

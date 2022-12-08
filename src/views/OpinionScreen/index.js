@@ -116,7 +116,14 @@ export const OpinionScreen = () => {
                     >
                         <Button
                             onClick={() => {
-                                setCurrentStep((prevState) => prevState + 1);
+                                if (currentStep < 4)
+                                    setCurrentStep(
+                                        (prevState) => prevState + 1,
+                                    );
+                                else
+                                    history.push('/final-decision', {
+                                        selectedOptionsKey,
+                                    });
                             }}
                             label={'Next'}
                         />

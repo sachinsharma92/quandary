@@ -447,3 +447,83 @@ export const FINAL_DECISIONS = {
         },
     ],
 };
+export const IMPACTS = {
+    poison: {
+        icon: Poison,
+        label: 'Poison the foxes',
+        heading:
+            'Three months later... A few foxes ate the poisoned bait and died.',
+        statement:
+            'But the attacks didn’t stop. A few sheep got poisoned as well.',
+        extendedSuggestions: [
+            {
+                id: 1,
+                text: 'Do nothing and wait some more time patiently.',
+            },
+            {
+                id: 2,
+                text: 'Increase the quantity of bait to kill more foxes.',
+            },
+            {
+                id: 3,
+                text: 'Build traps to capture the foxes as the poison is causing more harm.',
+            },
+            {
+                id: 4,
+                text: 'Start building a strong fence to keep the sheep safe inside.',
+            },
+        ],
+    },
+    fence: {
+        icon: Fence,
+        label: 'Build a fence',
+        heading:
+            'Three months later... It took a long time to build the fence but it was ready before the winter.',
+        statement:
+            'The sheep are well protected now and the attacks have reduced. But some foxes are still around and they can be a threat to the villagers.',
+        extendedSuggestions: [
+            {
+                id: 1,
+                text: 'Do nothing and wait, the foxes will slowly leave as they can’t hunt anymore.',
+            },
+            {
+                id: 2,
+                text: 'Build traps to capture the foxes because otherwise, they will never leave.',
+            },
+            {
+                id: 3,
+                text: 'Start poisoning the foxes because they are a big threat to the villagers.',
+            },
+            {
+                id: 4,
+                text: 'Try a new approach for scaring the remaining foxes away.',
+            },
+        ],
+    },
+    trap: {
+        icon: Cage,
+        label: 'Trap the foxes',
+        heading:
+            'Three months later... A few foxes got trapped and the attacks stopped for a while.',
+        statement:
+            'The good thing is the doctor was able to make the medicine. But the foxes have figured how to avoid traps and the attacks have started again.',
+        extendedSuggestions: [
+            {
+                id: 1,
+                text: 'Do nothing and wait some more time patiently.',
+            },
+            {
+                id: 2,
+                text: 'Start from scratch and build a better, stronger trap.',
+            },
+            {
+                id: 3,
+                text: 'Start leaving some poisoned bait out because the traps are not perfect.',
+            },
+            {
+                id: 4,
+                text: 'Start building a strong fence to keep the sheep safe inside.',
+            },
+        ],
+    },
+};

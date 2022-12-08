@@ -31,7 +31,8 @@
         transition: opacity 0.3s linear;
     }
     &.active {
-        border: none;
+        border: 1px solid
+            linear-gradient(112.88deg, #ffffff -1.79%, #cac0d5 103.17%);
         background: linear-gradient(
             112.88deg,
             #ffffff -1.79%,

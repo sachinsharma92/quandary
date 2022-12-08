@@ -11,7 +11,7 @@ export const IntroScreen = () => {
     return (
         <motion.div {...ANIMATION.ENTRY_ANIMATION} className={'intro-screen'}>
             <div className="background-layer-2" />
-            <motion.div {...ANIMATION.SLIDE_IN_LEFT} className={'heading'}>
+            <motion.div {...ANIMATION.REVEAL} className={'heading'}>
                 <p>
                     Before making your decison, listen to the views of these 6
                     villagers and sort them as:
@@ -20,15 +20,34 @@ export const IntroScreen = () => {
             </motion.div>
             <div className={'content'}>
                 <motion.img
+                    style={{scale: 1.13}}
                     initial={{
                         opacity: 0,
+                        translateX: '100vh',
                     }}
-                    animate={{opacity: 1, transition: {duration: 1}}}
+                    animate={{
+                        opacity: 1,
+                        translateX: 0,
+                        transition: {delay: 0.6, duration: 1},
+                    }}
                     exit={{opacity: 0}}
                     src={PictureColl}
                 />
             </div>
-            <motion.div {...ANIMATION.SLIDE_IN_LEFT} className={'footer'}>
+            <motion.div
+                initial={{
+                    translateY: '30vh',
+                }}
+                animate={{
+                    translateY: 0,
+                    transition: {
+                        delay: 1.5,
+                        type: 'spring',
+                        stiffness: 50,
+                    },
+                }}
+                className={'footer'}
+            >
                 <p>Tap on next to read their viewpoints.</p>
                 <Button
                     onClick={() => {

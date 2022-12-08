@@ -7,6 +7,11 @@ import {QuestionScreen} from '../views/QuestionScreen/index.js';
 import {UserChoiceScreen} from '../views/UserChoiceScreen/index.js';
 import {UserChoicePreviewScreen} from '../views/UserChoicePreviewScrreen/index.js';
 import {OpinionScreen} from '../views/OpinionScreen/index.js';
+import {DecisionScreen} from '../views/DecisionScreen/index.js';
+import {DecisionPreview} from '../views/DecisionPreview/index.js';
+import {ImpactScreen} from '../views/ImpactScreen/index.js';
+import {ImpactSolutionScreen} from '../views/ImpactSolutionScreen/index.js';
+import {ThankyouScreen} from '../views/ThankyouScreen/index.js';
 
 export const AppRouter = () => {
     const location = useLocation();
@@ -22,6 +27,14 @@ export const AppRouter = () => {
                     component={UserChoicePreviewScreen}
                 />
                 <Route path="/opinions" component={OpinionScreen} />
+                <Route path="/final-decision" component={DecisionScreen} />
+                <Route path="/decision-preview" component={DecisionPreview} />
+                <Route path="/impact" component={ImpactScreen} />
+                <Route
+                    path="/impact-solutions"
+                    component={ImpactSolutionScreen}
+                />
+                <Route path="/thank-you" component={ThankyouScreen} />
             </Switch>
         </AnimatePresence>
     );

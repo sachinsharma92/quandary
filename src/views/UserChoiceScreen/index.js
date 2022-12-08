@@ -36,12 +36,32 @@ export const UserChoiceScreen = () => {
         >
             <div className="background-layer" />
             <div style={{zIndex: 0}}>
-                <motion.div {...ANIMATION.SLIDE_OUT_LEFT} className={'heading'}>
+                <motion.div {...ANIMATION.REVEAL} className={'heading'}>
                     <p>
                         The villagers have suggested 3 possible solutions to fix
                         this problem. Please select any 2 out of the 3 to
                         investigate further
                     </p>
+                </motion.div>
+                <motion.div
+                    initial={{
+                        opacity: 0,
+                        translateY: '5vh',
+                    }}
+                    animate={{
+                        opacity: 1,
+                        translateY: 0,
+                        transition: {
+                            delay: 0.8,
+                            type: 'spring',
+                            stiffness: 50,
+                        },
+                    }}
+                    exit={{
+                        opacity: 0,
+                    }}
+                    className={'heading'}
+                >
                     <p>Select any 2 options</p>
                 </motion.div>
                 <motion.div className={'solutions'}>
