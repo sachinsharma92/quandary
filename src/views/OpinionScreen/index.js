@@ -1,8 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import './index.scss';
-import {Button} from '../../components/Button';
+import {Button} from 'components/Button';
 import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, VILLAGERS_OPINIONS} from '../../utils/constants/index.js';
+import {ANIMATION, VILLAGERS_OPINIONS} from 'utils/constants/index.js';
 import {useHistory} from 'react-router-dom';
 import {Opinion} from './components/Opinion';
 

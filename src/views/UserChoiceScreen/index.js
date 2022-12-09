@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
 import './index.scss';
 import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, SOLUTIONS} from '../../utils/constants/index.js';
-import {SolutionAccordion} from '../../components/SolutionAccordion';
-import {Button} from '../../components/Button';
+import {ANIMATION, SOLUTIONS} from 'utils/constants/index.js';
+import {SolutionAccordion} from 'components/SolutionAccordion';
+import {Button} from 'components/Button';
 import {useHistory} from 'react-router-dom';
 
 export const UserChoiceScreen = () => {

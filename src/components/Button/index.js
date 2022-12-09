@@ -1,5 +1,5 @@
 import React from 'react';
-import RightChevron from '../../assets/images/right-chevron.svg';
+import RightChevron from 'assets/images/right-chevron.svg';
 import './index.scss';
 import {motion} from 'framer-motion';
 

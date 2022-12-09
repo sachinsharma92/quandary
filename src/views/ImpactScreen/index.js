@@ -1,11 +1,11 @@
 import React from 'react';
 import './index.scss';
-import {Button} from '../../components/Button';
+import {Button} from 'components/Button';
 import {motion} from 'framer-motion';
-import {ANIMATION, IMPACTS} from '../../utils/constants/index.js';
+import {ANIMATION, IMPACTS} from 'utils/constants/index.js';
 import {useHistory} from 'react-router-dom';
-import {Dialog} from '../../components/Dialog/index.js';
-import FarmerImage from '../../assets/images/farmer-full.png';
+import {Dialog} from 'components/Dialog/index.js';
+import FarmerImage from 'assets/images/farmer-full.png';
 
 export const ImpactScreen = () => {
     const history = useHistory();

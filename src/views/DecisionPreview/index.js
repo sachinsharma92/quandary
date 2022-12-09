@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.scss';
-import {Button} from '../../components/Button';
+import {Button} from 'components/Button';
 import {motion} from 'framer-motion';
-import {ANIMATION, IMPACTS} from '../../utils/constants/index.js';
+import {ANIMATION, IMPACTS} from 'utils/constants/index.js';
 import {useHistory} from 'react-router-dom';
 
 export const DecisionPreview = () => {

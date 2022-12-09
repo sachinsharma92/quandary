@@ -1,12 +1,12 @@
 import React, {useRef, useState} from 'react';
 import './index.scss';
 import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, OPTIONS, QUESTIONS} from '../../utils/constants/index.js';
-import {Button} from '../../components/Button';
-import {Dialog} from '../../components/Dialog/index.js';
-import InfoIcon from '../../assets/images/info-icon.svg';
-import {BottomSheet} from '../../components/BottomSheet/index.js';
-import {InfoContent} from '../../components/InfoContent/index.js';
+import {ANIMATION, OPTIONS, QUESTIONS} from 'utils/constants/index.js';
+import {Button} from 'components/Button';
+import {Dialog} from 'components/Dialog/index.js';
+import InfoIcon from 'assets/images/info-icon.svg';
+import {BottomSheet} from 'components/BottomSheet/index.js';
+import {InfoContent} from 'components/InfoContent/index.js';
 import {useHistory} from 'react-router-dom';
 
 export const QuestionScreen = () => {
@@ -21,8 +21,7 @@ export const QuestionScreen = () => {
         5: '',
         6: '',
     });
-    console.log(answers);
-    console.log(currentStep);
+
     return (
         <motion.div
             {...ANIMATION.ENTRY_ANIMATION}

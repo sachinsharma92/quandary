@@ -1,11 +1,11 @@
 import React from 'react';
 import './index.scss';
-import Farmer from '../../assets/images/farmer-full.png';
-import {Button} from '../../components/Button';
-import {Dialog} from '../../components/Dialog/index.js';
+import Farmer from 'assets/images/farmer-full.png';
+import {Button} from 'components/Button';
+import {Dialog} from 'components/Dialog/index.js';
 import {useHistory} from 'react-router-dom';
 import {motion} from 'framer-motion';
-import {ANIMATION} from '../../utils/constants/index.js';
+import {ANIMATION} from 'utils/constants/index.js';
 
 export const SplashScreen = () => {
     const history = useHistory();

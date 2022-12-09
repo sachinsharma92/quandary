@@ -1,44 +1,41 @@
-const ROOT_KEY = '@quandary';
-const LS_KEY = {
-    user_choices: ROOT_KEY + ':user_choices',
-};
+const AUTH_TOKEN_KEY = 'auth_token';
+const GAME_KEY = import.meta.env.VITE_GAME_NAME;
+const GAMEPLAY_ID = 'gameplay_id';
+const LEVEL_DATA_KEY = 'level_data';
+const TIME_REMAINING = 'time_remaining';
+
+const setItem = (key, data) => localStorage.setItem(key, JSON.stringify(data));
+
+const getItem = (key) => JSON.parse(localStorage.getItem(key));
+
+const removeItem = (key) => localStorage.removeItem(key);
 
 const set = {
-    userChoices: (data) => {
-        localStorage.setItem(
-            LS_KEY.user_choices,
-            JSON.stringify({
-                user_choices: data,
-            }),
-        );
-    },
+    authToken: (token) => setItem(AUTH_TOKEN_KEY, token),
+    gameplayId: (id) => setItem(GAMEPLAY_ID, id),
+    gameId: (id) => setItem(GAME_KEY, id),
+    levelData: (data) => setItem(LEVEL_DATA_KEY, data),
+    timeRemaining: (time) => setItem(TIME_REMAINING, time),
 };
 
-const fetch = {
-    userChoices: () => {
-        const data = localStorage.getItem(LS_KEY.user_choices);
-        if (data) {
-            try {
-                const decoded = JSON.parse(data);
-                return decoded.user_choices;
-            } catch (err) {
-                console.log(err);
-            }
-        }
-    },
+const get = {
+    authToken: () => getItem(AUTH_TOKEN_KEY),
+    gameplayId: () => getItem(GAMEPLAY_ID),
+    gameId: () => getItem(GAME_KEY),
+    levelData: () => getItem(LEVEL_DATA_KEY),
+    timeRemaining: () => getItem(TIME_REMAINING),
 };
 
 const destroy = {
-    userChoices: () => {
-        localStorage.removeItem(LS_KEY.user_choices);
-    },
-    all: () => {
-        localStorage.removeItem(LS_KEY.user_choices);
-    },
+    all: () => localStorage.clear(),
+    authToken: () => removeItem(AUTH_TOKEN_KEY),
+    gameplayId: () => removeItem(GAMEPLAY_ID),
+    gameId: () => removeItem(AUTH_TOKEN_KEY),
+    levelData: () => removeItem(LEVEL_DATA_KEY),
 };
 
 export const storage = {
     set,
-    fetch,
+    get,
     destroy,
 };

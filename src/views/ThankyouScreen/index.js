@@ -1,14 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './index.scss';
 import {motion} from 'framer-motion';
-import {ANIMATION} from '../../utils/constants/index.js';
-import {useHistory} from 'react-router-dom';
-import {Dialog} from '../../components/Dialog/index.js';
-import FarmerImage from '../../assets/images/farmer-full.png';
+import {ANIMATION} from 'utils/constants/index.js';
+import {Dialog} from 'components/Dialog/index.js';
+import FarmerImage from 'assets/images/farmer-full.png';
+import {GC} from 'services/gameCenterService';
 
 export const ThankyouScreen = () => {
-    const history = useHistory();
-    const {decision = ''} = history.location.state || {};
+    useEffect(() => {
+        setTimeout(GC.sendGameEndMessage, 4000);
+    }, []);
 
     return (
         <div className={'thank-screen'}>

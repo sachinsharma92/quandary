@@ -1,20 +1,29 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route, Switch, useLocation} from 'react-router-dom';
-import {SplashScreen} from '../views/SplashScreen/index.js';
-import {IntroScreen} from '../views/IntroScreen';
+import {SplashScreen} from 'views/SplashScreen';
+import {IntroScreen} from 'views/IntroScreen';
 import {AnimatePresence} from 'framer-motion';
-import {QuestionScreen} from '../views/QuestionScreen/index.js';
-import {UserChoiceScreen} from '../views/UserChoiceScreen/index.js';
-import {UserChoicePreviewScreen} from '../views/UserChoicePreviewScrreen/index.js';
-import {OpinionScreen} from '../views/OpinionScreen/index.js';
-import {DecisionScreen} from '../views/DecisionScreen/index.js';
-import {DecisionPreview} from '../views/DecisionPreview/index.js';
-import {ImpactScreen} from '../views/ImpactScreen/index.js';
-import {ImpactSolutionScreen} from '../views/ImpactSolutionScreen/index.js';
-import {ThankyouScreen} from '../views/ThankyouScreen/index.js';
+import {QuestionScreen} from 'views/QuestionScreen';
+import {UserChoiceScreen} from 'views/UserChoiceScreen';
+import {UserChoicePreviewScreen} from 'views/UserChoicePreviewScrreen';
+import {OpinionScreen} from 'views/OpinionScreen';
+import {DecisionScreen} from 'views/DecisionScreen';
+import {DecisionPreview} from 'views/DecisionPreview';
+import {ImpactScreen} from 'views/ImpactScreen';
+import {ImpactSolutionScreen} from 'views/ImpactSolutionScreen';
+import {ThankyouScreen} from 'views/ThankyouScreen';
+import {GC} from 'services/gameCenterService';
 
 export const AppRouter = () => {
     const location = useLocation();
+
+    useEffect(() => {
+        GC.sendGameLoadMessage();
+        window.addEventListener('message', GC.messageEventHandler);
+        return () =>
+            window.removeEventListener('message', GC.messageEventHandler);
+    }, []);
+
     return (
         <AnimatePresence>
             <Switch location={location} key={location.key}>
