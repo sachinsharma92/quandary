@@ -74,6 +74,8 @@
                 display: flex;
                 align-items: flex-start;
                 justify-content: flex-end;
+                top: 150px;
+                left: -12px;
             }
 
             @include mobile {
@@ -88,7 +90,7 @@
             top: 0%;
 
             @include desktop {
-                translate: -180px 140px;
+                translate: -180px 109px;
             }
 
             @include mobile {
@@ -136,11 +138,14 @@
             color: #ffffff;
             text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.06);
             margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 18px;
 
-            @include mobile {
-                font-size: 14px;
-                line-height: 18px;
+            @include desktop {
+                font-size: 16px;
+                line-height: 24px;
                 max-width: 100%;
+                margin-bottom: 25px;
             }
         }
     }
