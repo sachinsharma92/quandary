@@ -1,13 +1,13 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import './index.scss';
-import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, OPTIONS, QUESTIONS} from 'utils/constants/index.js';
-import {Button} from 'components/Button';
-import {Dialog} from 'components/Dialog/index.js';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ANIMATION, OPTIONS, QUESTIONS } from 'utils/constants/index.js';
+import { Button } from 'components/Button';
+import { Dialog } from 'components/Dialog/index.js';
 import InfoIcon from 'assets/images/info-icon.svg';
-import {BottomSheet} from 'components/BottomSheet/index.js';
-import {InfoContent} from 'components/InfoContent/index.js';
-import {useHistory} from 'react-router-dom';
+import { BottomSheet } from 'components/BottomSheet/index.js';
+import { InfoContent } from 'components/InfoContent/index.js';
+import { useHistory } from 'react-router-dom';
 
 export const QuestionScreen = () => {
     const history = useHistory();
@@ -27,7 +27,6 @@ export const QuestionScreen = () => {
             {...ANIMATION.ENTRY_ANIMATION}
             className={'questions-container'}
         >
-            <div className="background-layer" />
             <div className="content">
                 <AnimatePresence>
                     <motion.div
@@ -50,71 +49,74 @@ export const QuestionScreen = () => {
                         <Dialog text={QUESTIONS[currentStep].dialog} />
                     </motion.div>
                 </AnimatePresence>
-                <AnimatePresence>
-                    <motion.div
-                        initial={{
-                            opacity: 0,
-                            translateY: '100vh',
-                        }}
-                        animate={{
-                            opacity: 1,
-                            translateY: '34vh',
-                            transition: {
-                                duration: 1,
-                                type: 'spring',
-                                delay: currentStep > 0 ? 2.3 : 1.5,
-                            },
-                        }}
-                        exit={{
-                            opacity: 0,
-                        }}
-                        key={currentStep}
-                        className="details"
-                    >
-                        <p>{QUESTIONS[currentStep].name}</p>
-                        <p>
-                            {QUESTIONS[currentStep].designation} •{' '}
-                            {QUESTIONS[currentStep].age}
-                        </p>
-                    </motion.div>
-                </AnimatePresence>
-                <AnimatePresence>
-                    <motion.img
-                        key={currentStep}
-                        style={{
-                            translateY: '3vh',
-                        }}
-                        initial={{
-                            opacity: 0,
-                            translateX: '100vw',
-                        }}
-                        animate={{
-                            opacity: 1,
-                            translateX: '32vw',
-                            transition: {
-                                type: 'spring',
-                                duration: 1.4,
-                                delay: currentStep > 0 ? 1 : 0.2,
-                            },
-                        }}
-                        exit={{
-                            opacity: 0,
-                            translateX: '100vw',
-                            transition: {
-                                delay:
-                                    currentStep === QUESTIONS.length - 1
-                                        ? 0
-                                        : 0.15,
-                                duration:
-                                    currentStep === QUESTIONS.length - 1
-                                        ? 0
-                                        : 0.7,
-                            },
-                        }}
-                        className={'character'}
-                        src={QUESTIONS[currentStep].characterImage}
-                    />
-                </AnimatePresence>
+
+                <div className='user-info'>
+                    <AnimatePresence>
+                        <motion.div
+                            initial={{
+                                opacity: 0,
+                                translateY: '100vh',
+                            }}
+                            animate={{
+                                opacity: 1,
+                                translateY: '34vh',
+                                transition: {
+                                    duration: 1,
+                                    type: 'spring',
+                                    delay: currentStep > 0 ? 2.3 : 1.5,
+                                },
+                            }}
+                            exit={{
+                                opacity: 0,
+                            }}
+                            key={currentStep}
+                            className="details"
+                        >
+                            <p>{QUESTIONS[currentStep].name}</p>
+                            <p>
+                                {QUESTIONS[currentStep].designation} •{' '}
+                                {QUESTIONS[currentStep].age}
+                            </p>
+                        </motion.div>
+                    </AnimatePresence>
+                    <AnimatePresence>
+                        <motion.img
+                            key={currentStep}
+                            style={{
+                                translateY: '3vh',
+                            }}
+                            initial={{
+                                opacity: 0,
+                                translateX: '100vw',
+                            }}
+                            animate={{
+                                opacity: 1,
+                                translateX: '32vw',
+                                transition: {
+                                    type: 'spring',
+                                    duration: 1.4,
+                                    delay: currentStep > 0 ? 1 : 0.2,
+                                },
+                            }}
+                            exit={{
+                                opacity: 0,
+                                translateX: '100vw',
+                                transition: {
+                                    delay:
+                                        currentStep === QUESTIONS.length - 1
+                                            ? 0
+                                            : 0.15,
+                                    duration:
+                                        currentStep === QUESTIONS.length - 1
+                                            ? 0
+                                            : 0.7,
+                                },
+                            }}
+                            className={'character'}
+                            src={QUESTIONS[currentStep].characterImage}
+                        />
+                    </AnimatePresence>
+                </div>
             </div>
             <motion.div
                 initial={{
@@ -147,7 +149,7 @@ export const QuestionScreen = () => {
                             onClick={() => {
                                 bottomSheetRef.current.open();
                             }}
-                            whileTap={{scale: 1.15}}
+                            whileTap={{ scale: 1.15 }}
                             src={InfoIcon}
                         />
                     </p>
@@ -164,11 +166,10 @@ export const QuestionScreen = () => {
                                     scale: 1.05,
                                 }}
                                 key={index}
-                                className={`${
-                                    answers[currentStep + 1] === item
-                                        ? 'active'
-                                        : ''
-                                }`}
+                                className={`${answers[currentStep + 1] === item
+                                    ? 'active'
+                                    : ''
+                                    }`}
                             >
                                 <p>{item}</p>
                             </motion.div>
@@ -177,7 +178,7 @@ export const QuestionScreen = () => {
                 </div>
 
                 <div className={'villager-count'}>
-                    <div>
+                    <div className='pager-style'>
                         <span>{currentStep + 1}</span>
                         <span>/{QUESTIONS.length} villager</span>
                     </div>

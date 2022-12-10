@@ -1,3 +1,7 @@
+// variables
+@import '../../styles/variables/colors';
+@import '../../styles/variables//mixins';
+
 .dialog-box {
     background: #fff;
     border-radius: 12px;
@@ -5,15 +9,25 @@
     width: max-content;
     max-width: 60%;
     position: relative;
+    display: flex;
+    align-items: center;
+
+    &::after {
+        position: absolute;
+        right: -18px;
+        width: 20px;
+        height: 21px;
+        background: url('../../assets/images/dialog-pointer.png');
+        content: '';
+        rotate: 90deg;
+    }
     p {
         margin: 0;
-        font-family: 'Inter';
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 18px;
         letter-spacing: -0.152174px;
-
         color: #2e1500;
     }
     .pointer {

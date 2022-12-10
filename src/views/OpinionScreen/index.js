@@ -1,14 +1,14 @@
-import React, {useCallback, useState} from 'react';
+import React, { useCallback, useState } from 'react';
 import './index.scss';
-import {Button} from 'components/Button';
-import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, VILLAGERS_OPINIONS} from 'utils/constants/index.js';
-import {useHistory} from 'react-router-dom';
-import {Opinion} from './components/Opinion';
+import { Button } from 'components/Button';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ANIMATION, VILLAGERS_OPINIONS } from 'utils/constants/index.js';
+import { useHistory } from 'react-router-dom';
+import { Opinion } from './components/Opinion';
 
 export const OpinionScreen = () => {
     const history = useHistory();
-    const {selectedOptionsKey = ''} = history.location.state || {};
+    const { selectedOptionsKey = '' } = history.location.state || {};
     console.log(history.location.state);
     const [currentStep, setCurrentStep] = useState(1);
     const [answers, setAnswers] = useState({
@@ -36,8 +36,7 @@ export const OpinionScreen = () => {
     console.log('activeOpinion', answers);
     return (
         <div className={'opinion-screen'}>
-            <div className="background-layer-2" />
-            <div style={{zIndex: 0}}>
+            <div style={{ zIndex: 0 }}>
                 <AnimatePresence>
                     <div className={'heading'}>
                         <motion.p key={currentStep} {...ANIMATION.REVEAL}>
@@ -51,7 +50,7 @@ export const OpinionScreen = () => {
                     <AnimatePresence>
                         <motion.img
                             key={currentStep}
-                            style={{translateX: '-50%'}}
+                            style={{ translateX: '-50%' }}
                             initial={{
                                 opacity: 0,
                                 translateY: '15vh',
@@ -65,7 +64,7 @@ export const OpinionScreen = () => {
                                     stiffness: 50,
                                 },
                             }}
-                            exit={{opacity: 0}}
+                            exit={{ opacity: 0 }}
                             className={'char-img'}
                             src={activeOpinion.characterImage}
                         />
@@ -86,7 +85,7 @@ export const OpinionScreen = () => {
                                     stiffness: 50,
                                 },
                             }}
-                            exit={{opacity: 0}}
+                            exit={{ opacity: 0 }}
                             className={'opinions'}
                         >
                             {activeOpinion.opinions?.map((item, index) => (
@@ -109,10 +108,11 @@ export const OpinionScreen = () => {
                         }}
                         animate={{
                             opacity: 1,
-                            transition: {duration: 0.3},
+                            transition: { duration: 0.3 },
                         }}
-                        exit={{opacity: 0}}
-                        style={{alignSelf: 'flex-end'}}
+                        exit={{ opacity: 0 }}
+                        style={{ alignSelf: 'flex-end' }}
+                        className="btn-center"
                     >
                         <Button
                             onClick={() => {

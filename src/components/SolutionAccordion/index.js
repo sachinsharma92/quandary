@@ -2,7 +2,7 @@ import React from 'react';
 import './index.scss';
 import InactiveCheckmark from '../../assets/images/checkmark-inactive.svg';
 import ActiveCheckmark from '../../assets/images/checkmark-active.svg';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export const SolutionAccordion = ({
     icon,
@@ -28,11 +28,11 @@ export const SolutionAccordion = ({
                 {
                     opacity: 1,
                     height: isExpanded ? 195 : 80,
-                    transition: {duration: 0.35},
+                    transition: { duration: 0.35 },
                 },
                 {
                     translateY: 0,
-                    transition: {delay: 0.8, type: 'spring', stiffness: 45},
+                    transition: { delay: 0.8, type: 'spring', stiffness: 45 },
                 },
             ]}
             exit={{
@@ -46,7 +46,7 @@ export const SolutionAccordion = ({
                 }}
                 animate={{
                     opacity: isSelected ? 1 : 0,
-                    transition: {duration: 0.3},
+                    transition: { duration: 0.3 },
                 }}
                 exit={{
                     opacity: 0,
@@ -56,9 +56,9 @@ export const SolutionAccordion = ({
             <div
                 className={`solution-row-content ${isSelected ? 'active' : ''}`}
             >
-                <div style={{display: 'flex', alignItems: 'center'}}>
+                <div className="media-box">
                     <img src={icon} />
-                    <div style={{marginLeft: 8}}>
+                    <div style={{ marginLeft: 8 }}>
                         <p className={'label'}>{label}</p>
                         <p
                             onClick={(e) => {
@@ -80,7 +80,7 @@ export const SolutionAccordion = ({
                     }}
                     animate={{
                         opacity: 1,
-                        transition: {duration: 0.35, delay: 0.1},
+                        transition: { duration: 0.35, delay: 0.1 },
                     }}
                     className={`expanded-content ${isSelected ? 'active' : ''}`}
                 >

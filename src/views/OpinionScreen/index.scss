@@ -1,3 +1,6 @@
+@import '../../styles/variables/colors';
+@import '../../styles/variables//mixins';
+
 .opinion-screen {
     display: flex;
     flex-direction: column;
@@ -7,18 +10,6 @@
     padding: 64px 20px 40px 20px;
     position: relative;
     overflow-y: auto;
-    &:before {
-        content: ' ';
-        background-image: url('../../assets/images/intro-animal-bg.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        width: 100%;
-        height: 100vh;
-        left: 0;
-        top: 0;
-        position: absolute;
-        filter: blur(6px);
-    }
 
     .background-layer-2 {
         height: 100%;
@@ -36,27 +27,48 @@
 
     .heading {
         align-self: center;
+
+        @include desktop {
+            width: 422px;
+            margin: 0 auto;
+        }
+
         p {
             margin: 0;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
             font-size: 14px;
             line-height: 23px;
             text-align: center;
             letter-spacing: -0.152174px;
             color: #ffffff;
+
+            @include desktop {
+                font-size: 16px;
+                line-height: 24px;
+            }
         }
     }
 
     .contents {
         position: relative;
+
+        @include desktop {
+            padding-top: 10vh;
+        }
+
         .char-img {
             position: absolute;
             z-index: 0;
             top: -5vh;
             width: 35vh;
             left: 50%;
+
+            @include desktop {
+                position: absolute;
+                z-index: 0;
+                top: 12vh;
+                width: 45vh;
+                left: 50%;
+            }
         }
 
         .opinions {
@@ -66,6 +78,10 @@
             justify-content: space-around;
             flex-direction: column;
             padding-top: 15vh;
+
+            @include desktop {
+                flex-direction: row;
+            }
 
             .choice {
                 display: flex;
@@ -77,7 +93,6 @@
                 }
 
                 p {
-                    font-family: 'Inter';
                     font-style: normal;
                     font-weight: 400;
                     font-size: 16px;
@@ -107,9 +122,7 @@
 
         p {
             margin: 0;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
+
             font-size: 14px;
             line-height: 18px;
             text-align: center;

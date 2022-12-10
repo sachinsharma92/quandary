@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import './index.scss';
-import {motion} from 'framer-motion';
-import {ANIMATION} from 'utils/constants/index.js';
-import {Dialog} from 'components/Dialog/index.js';
-import FarmerImage from 'assets/images/farmer-full.png';
-import {GC} from 'services/gameCenterService';
+import { motion } from 'framer-motion';
+import { ANIMATION } from 'utils/constants/index.js';
+import { Dialog } from 'components/Dialog/index.js';
+import FarmerImage from 'assets/images/farmer-full.svg';
+import { GC } from 'services/gameCenterService';
 
 export const ThankyouScreen = () => {
     useEffect(() => {
@@ -13,7 +13,7 @@ export const ThankyouScreen = () => {
 
     return (
         <div className={'thank-screen'}>
-            <div className="background-layer-2" />
+
             <motion.div {...ANIMATION.REVEAL} className={'heading'}>
                 <p>
                     On behalf of the whole village, your help is deeply
@@ -54,7 +54,7 @@ export const ThankyouScreen = () => {
                             stiffness: 50,
                         },
                     }}
-                    exit={{opacity: 0}}
+                    exit={{ opacity: 0 }}
                     className={'character'}
                     src={FarmerImage}
                 />

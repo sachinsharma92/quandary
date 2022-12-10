@@ -1,4 +1,5 @@
-import FarmerImage from '../../assets/images/farmer.png';
+// import FarmerImage from '../../assets/images/farmer.png';
+import FarmerImage from '../../assets/images/farmer-full.svg';
 import TeacherImage from '../../assets/images/teacher.png';
 import DoctorImage from '../../assets/images/doctor.png';
 import WifeImage from '../../assets/images/housewife.png';
@@ -20,7 +21,7 @@ export const ANIMATION = {
         },
         animate: {
             opacity: 1,
-            transition: {duration: 0.5},
+            transition: { duration: 0.5 },
         },
         exit: {
             opacity: 0,
@@ -32,11 +33,11 @@ export const ANIMATION = {
         },
         animate: {
             opacity: 1,
-            transition: {duration: 1, delay: 0.1},
+            transition: { duration: 1, delay: 0.1 },
         },
         exit: {
             x: '-100vw',
-            transition: {ease: 'easeInOut'},
+            transition: { ease: 'easeInOut' },
         },
     },
     SLIDE_IN_LEFT: {
@@ -47,11 +48,11 @@ export const ANIMATION = {
         animate: {
             opacity: 1,
             x: 0,
-            transition: {duration: 1},
+            transition: { duration: 1 },
         },
         exit: {
             x: '-100vw',
-            transition: {ease: 'easeInOut'},
+            transition: { ease: 'easeInOut' },
         },
     },
     REVEAL: {
@@ -60,7 +61,7 @@ export const ANIMATION = {
         },
         animate: {
             opacity: 1,
-            transition: {duration: 0.5, delay: 0.25},
+            transition: { duration: 0.5, delay: 0.25 },
         },
         exit: {
             opacity: 0,

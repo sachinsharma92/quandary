@@ -1,3 +1,7 @@
+// variables
+@import '../../styles/variables/colors';
+@import '../../styles/variables//mixins';
+
 .questions-container {
     display: flex;
     flex-direction: column;
@@ -5,33 +9,6 @@
     height: 100%;
     position: relative;
     overflow: hidden;
-    &:before {
-        content: ' ';
-        background-image: url('../../assets/images/sheep-food.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        position: absolute;
-        width: 700px;
-        height: 700px;
-        filter: brightness(0.4);
-        left: -39vw;
-        top: 1vh;
-        transform: scale(0.8);
-    }
-
-    .background-layer {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: linear-gradient(
-            180deg,
-            rgba(17, 13, 27, 0.87) 0%,
-            rgba(13, 5, 23, 0.87) 70.67%
-        );
-        mix-blend-mode: normal;
-    }
     .content {
         z-index: 0;
         .dialog-container {
@@ -40,11 +17,35 @@
             left: 10vw;
             max-width: 84%;
             z-index: 1;
+
+            @include desktop {
+                top: 15vh;
+                left: 20vw;
+            }
         }
+
+        .user-info {
+            @include desktop {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+        }
+
         .details {
             position: absolute;
             left: 6vw;
-            //transform: translateY(100vh);
+            z-index: 1;
+
+            @include desktop {
+                position: relative;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                bottom: 180px;
+            }
+
             p {
                 margin: 0;
                 &:nth-of-type(1) {
@@ -75,6 +76,12 @@
             position: absolute;
             width: 45vh;
             transform: translateY(14vh);
+
+            @include desktop {
+                position: relative;
+                top: 60px;
+                left: 70px;
+            }
         }
     }
     .options-container {
@@ -109,6 +116,13 @@
         .options {
             margin-top: 20px;
 
+            @include desktop {
+                display: flex;
+                max-width: 80vw;
+                margin: 20px auto 0;
+                gap: 0 14px;
+            }
+
             > div {
                 margin-bottom: 15px;
                 padding: 16px;
@@ -122,6 +136,11 @@
                 border-radius: 20px;
                 border: 1px solid #e1c9ff;
                 transition: all 0.3s linear;
+
+                @include desktop {
+                    width: 100%;
+                }
+
                 &.active {
                     transition: all 0.3s linear;
                     background: linear-gradient(
@@ -151,10 +170,25 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+
+            @include desktop {
+                padding: 30px 0;
+            }
             > div {
                 display: flex;
                 align-items: center;
             }
+
+            .pager-style {
+                @include desktop {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%;
+                    padding-left: 131px;
+                }
+            }
+
             span {
                 font-family: 'Baloo Chettan 2';
                 font-style: normal;

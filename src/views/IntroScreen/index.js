@@ -1,10 +1,10 @@
 import React from 'react';
 import './index.scss';
-import PictureColl from 'assets/images/picture_coll.png';
-import {Button} from 'components/Button';
-import {motion} from 'framer-motion';
-import {ANIMATION} from 'utils/constants/index.js';
-import {useHistory} from 'react-router-dom';
+import PictureColl from 'assets/images/picture_coll.svg';
+import { Button } from 'components/Button';
+import { motion } from 'framer-motion';
+import { ANIMATION } from 'utils/constants/index.js';
+import { useHistory } from 'react-router-dom';
 
 export const IntroScreen = () => {
     const history = useHistory();
@@ -20,7 +20,7 @@ export const IntroScreen = () => {
             </motion.div>
             <div className={'content'}>
                 <motion.img
-                    style={{scale: 1.13}}
+                    style={{ scale: 1.13 }}
                     initial={{
                         opacity: 0,
                         translateX: '100vh',
@@ -28,9 +28,9 @@ export const IntroScreen = () => {
                     animate={{
                         opacity: 1,
                         translateX: 0,
-                        transition: {delay: 0.6, duration: 1},
+                        transition: { delay: 0.6, duration: 1 },
                     }}
-                    exit={{opacity: 0}}
+                    exit={{ opacity: 0 }}
                     src={PictureColl}
                 />
             </div>

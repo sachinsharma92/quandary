@@ -1,3 +1,6 @@
+@import '../../styles/variables/colors';
+@import '../../styles/variables//mixins';
+
 .user-choice-preview-screen {
     display: flex;
     flex-direction: column;
@@ -61,15 +64,17 @@
         z-index: 0;
         p {
             margin: 0;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
             font-size: 14px;
             line-height: 18px;
             text-align: center;
             letter-spacing: -0.152174px;
             color: #ffffff;
             text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.06);
+
+            @include desktop {
+                font-size: 16px;
+                line-height: 24px;
+            }
         }
     }
 
@@ -79,6 +84,14 @@
         position: relative;
         justify-content: space-around;
 
+        @include desktop {
+            width: 422px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .choice {
             display: flex;
             flex-direction: column;
@@ -86,10 +99,13 @@
             img {
                 object-fit: contain;
                 height: 50%;
+
+                @include desktop {
+                    height: 120px;
+                }
             }
 
             p {
-                font-family: 'Inter';
                 font-style: normal;
                 font-weight: 400;
                 font-size: 16px;
@@ -116,11 +132,13 @@
             rgba(43, 29, 80, 0) 94.95%
         );
 
+        @include desktop {
+            max-width: 422px;
+            margin: 0 auto;
+        }
+
         p {
             margin: 0;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
             font-size: 14px;
             line-height: 18px;
             text-align: center;
@@ -128,7 +146,12 @@
             color: #ffffff;
             text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.06);
             margin-bottom: 25px;
-            max-width: 90%;
+            max-width: 80%;
+
+            @include desktop {
+                font-size: 16px;
+                line-height: 24px;
+            }
         }
     }
 }

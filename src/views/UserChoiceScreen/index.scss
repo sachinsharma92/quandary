@@ -1,3 +1,6 @@
+@import '../../styles/variables/colors';
+@import '../../styles/variables//mixins';
+
 .user-choice-container {
     display: flex;
     flex-direction: column;
@@ -6,34 +9,6 @@
     overflow: hidden;
     padding: 40px 25px;
     justify-content: space-between;
-
-    &:before {
-        content: ' ';
-        background-image: url('../../assets/images/intro-animal-bg.png');
-        background-size: cover;
-        background-repeat: no-repeat;
-        position: absolute;
-        width: 700px;
-        height: 700px;
-        filter: brightness(0.8);
-        left: -39vw;
-        top: 1vh;
-        transform: scale(0.8);
-    }
-
-    .background-layer {
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: linear-gradient(
-            180deg,
-            rgba(17, 13, 27, 0.87) 0%,
-            rgba(13, 5, 23, 0.87) 70.67%
-        );
-        mix-blend-mode: normal;
-    }
 
     .content {
         z-index: 0;
@@ -90,16 +65,29 @@
         z-index: 0;
         margin-top: 3vh;
 
+        @include desktop {
+            max-width: 537px;
+            margin: 3vh auto 0;
+        }
+
+        &.heading-2 {
+            @include desktop {
+                margin-top: 64px;
+            }
+        }
+
         p {
+            font-size: 16px;
+            line-height: 24px;
             margin: 0;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 14px;
-            line-height: 23px;
             text-align: center;
             letter-spacing: -0.152174px;
             color: #ffffff;
+
+            @include mobile {
+                font-size: 14px;
+                line-height: 23px;
+            }
 
             &:nth-of-type(1) {
                 margin-bottom: 30px;
@@ -110,5 +98,19 @@
     .solutions {
         z-index: 0;
         margin-top: 20px;
+
+        @include desktop {
+            display: flex;
+            width: 100%;
+            gap: 0 21px;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+    }
+
+    .solution-row {
+        @include desktop {
+            width: 100%;
+        }
     }
 }
