@@ -5,8 +5,10 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ANIMATION, VILLAGERS_OPINIONS } from 'utils/constants/index.js';
 import { useHistory } from 'react-router-dom';
 import { Opinion } from './components/Opinion';
+import { useMediaQuery } from 'react-responsive'
 
 export const OpinionScreen = () => {
+    const desktopScreen = useMediaQuery({ query: '(min-width: 1024px)' })
     const history = useHistory();
     const { selectedOptionsKey = '' } = history.location.state || {};
     console.log(history.location.state);
@@ -66,7 +68,7 @@ export const OpinionScreen = () => {
                             }}
                             exit={{ opacity: 0 }}
                             className={'char-img'}
-                            src={activeOpinion.characterImage}
+                            src={!desktopScreen ? activeOpinion.characterImage : activeOpinion.characterDesktopImage}
                         />
                     </AnimatePresence>
                     <AnimatePresence>

@@ -1,10 +1,20 @@
-// import FarmerImage from '../../assets/images/farmer.png';
-import FarmerImage from '../../assets/images/farmer-full.svg';
+// Desktop Images
+import FarmerImageLarge from '../../assets/images/farmer-full.png';
+import LandlordImageLarge from '../../assets/images/landlord-full.png';
+import TeacherImageLarge from '../../assets/images/teacher-full.png';
+import WifeImageLarge from '../../assets/images/housewife-full.png';
+import DoctorImageLarge from '../../assets/images/doctor-full.png';
+import ShopkeeperImageLarge from '../../assets/images/shopkeeper-full.png';
+
+
+// Mobile Images
+import FarmerImage from '../../assets/images/farmer.png';
 import TeacherImage from '../../assets/images/teacher.png';
 import DoctorImage from '../../assets/images/doctor.png';
 import WifeImage from '../../assets/images/housewife.png';
 import GuardImage from '../../assets/images/guard.png';
 import LandlordImage from '../../assets/images/landlord.png';
+
 import Cage from '../../assets/images/cage.svg';
 import LandlordDp from '../../assets/images/landlord-profile.png';
 import Poison from '../../assets/images/poison.svg';
@@ -75,6 +85,7 @@ export const QUESTIONS = [
         designation: 'Farmer',
         age: '28 yrs',
         characterImage: FarmerImage,
+        characterDesktopImage: FarmerImageLarge,
     },
     {
         dialog: 'We should build a good trap quickly. I have full confidence in our hunters.',
@@ -82,6 +93,7 @@ export const QUESTIONS = [
         designation: 'Landlord',
         age: '32 yrs',
         characterImage: LandlordImage,
+        characterDesktopImage: LandlordImageLarge,
     },
     {
         dialog: 'Whatever we decide, harming animals would be very wrong.',
@@ -89,6 +101,7 @@ export const QUESTIONS = [
         designation: 'Teacher',
         age: '25 yrs',
         characterImage: TeacherImage,
+        characterDesktopImage: TeacherImageLarge,
     },
     {
         dialog: 'These foxes can do a lot of damage. We should poison them.',
@@ -96,6 +109,7 @@ export const QUESTIONS = [
         designation: 'Housewife',
         age: '35 yrs',
         characterImage: WifeImage,
+        characterDesktopImage: WifeImageLarge,
     },
     {
         dialog: 'The saliva of wild foxes can be used to make medicines.',
@@ -103,6 +117,7 @@ export const QUESTIONS = [
         designation: 'Doctor',
         age: '30 yrs',
         characterImage: DoctorImage,
+        characterDesktopImage: DoctorImageLarge,
     },
     {
         dialog: 'We should build a strong fence to protect the sheep. This is a long-term solution.',
@@ -110,6 +125,7 @@ export const QUESTIONS = [
         designation: 'Guard',
         age: '22 yrs',
         characterImage: GuardImage,
+        characterDesktopImage: ShopkeeperImageLarge,
     },
 ];
 export const OPTIONS = ['Fact', 'Opinion', 'Idea'];
@@ -157,6 +173,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Ramesh',
             characterImage: FarmerImage,
+            characterDesktopImage: FarmerImageLarge,
             opinions: [
                 {
                     id: 'trap',
@@ -177,6 +194,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Nilesh',
             characterImage: GuardImage,
+            characterDesktopImage: ShopkeeperImageLarge,
             opinions: [
                 {
                     id: 'trap',
@@ -197,6 +215,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Sunita',
             characterImage: WifeImage,
+            characterDesktopImage: WifeImageLarge,
             opinions: [
                 {
                     id: 'trap',
@@ -217,6 +236,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Rakesh',
             characterImage: DoctorImage,
+            characterDesktopImage: DoctorImageLarge,
             opinions: [
                 {
                     id: 'trap',

@@ -26,7 +26,7 @@
         border-radius: 12px;
 
         @include mobile {
-            max-width: 80%;
+            max-width: 100%;
         }
 
         p {
@@ -75,7 +75,7 @@
                 align-items: flex-start;
                 justify-content: flex-end;
                 top: 150px;
-                left: -12px;
+                left: -12vh;
             }
 
             @include mobile {
@@ -83,20 +83,27 @@
                 right: 0;
                 top: 2vh;
             }
+
+            .dialog-box {
+                &::after {
+                    @include desktop {
+                        rotate: 90deg;
+                    }
+                }
+            }
         }
 
         .character {
-            width: 387px;
             top: 0%;
 
             @include desktop {
-                translate: -180px 109px;
+                translate: -180px 149px;
+                height: 60vh;
             }
 
             @include mobile {
                 position: relative;
-                width: 33vh;
-                transform: translateX(27vw);
+                height: 60vh;
             }
         }
     }

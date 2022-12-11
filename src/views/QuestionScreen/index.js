@@ -8,8 +8,10 @@ import InfoIcon from 'assets/images/info-icon.svg';
 import { BottomSheet } from 'components/BottomSheet/index.js';
 import { InfoContent } from 'components/InfoContent/index.js';
 import { useHistory } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive'
 
 export const QuestionScreen = () => {
+    const desktopScreen = useMediaQuery({ query: '(min-width: 1024px)' })
     const history = useHistory();
     const [currentStep, setCurrentStep] = useState(0);
     const bottomSheetRef = useRef();
@@ -113,7 +115,7 @@ export const QuestionScreen = () => {
                                 },
                             }}
                             className={'character'}
-                            src={QUESTIONS[currentStep].characterImage}
+                            src={!desktopScreen ? QUESTIONS[currentStep].characterImage : QUESTIONS[currentStep].characterDesktopImage}
                         />
                     </AnimatePresence>
                 </div>

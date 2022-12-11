@@ -3,7 +3,7 @@ import './index.scss';
 import { motion } from 'framer-motion';
 import { ANIMATION } from 'utils/constants/index.js';
 import { Dialog } from 'components/Dialog/index.js';
-import FarmerImage from 'assets/images/farmer-full.svg';
+import FarmerImage from 'assets/images/farmer-full.png';
 import { GC } from 'services/gameCenterService';
 
 export const ThankyouScreen = () => {

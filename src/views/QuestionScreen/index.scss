@@ -11,6 +11,7 @@
     overflow: hidden;
     .content {
         z-index: 0;
+
         .dialog-container {
             position: absolute;
             top: 10vh;
@@ -19,8 +20,13 @@
             z-index: 1;
 
             @include desktop {
-                top: 15vh;
-                left: 20vw;
+                left: 27vw;
+            }
+
+            .dialog-box {
+                @include desktop {
+                    width: 440px;
+                }
             }
         }
 
@@ -80,7 +86,9 @@
             @include desktop {
                 position: relative;
                 top: 60px;
-                left: 70px;
+                left: 23vh;
+                width: 22vh;
+                margin-bottom: 20px;
             }
         }
     }

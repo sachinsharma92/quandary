@@ -91,6 +91,7 @@ export const UserChoiceScreen = () => {
                         }}
                         exit={{ opacity: 0 }}
                         style={{ alignSelf: 'flex-end' }}
+                        className="btn-center"
                     >
                         <Button
                             onClick={() =>

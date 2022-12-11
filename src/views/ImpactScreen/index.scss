@@ -58,23 +58,30 @@
         .dialog-container {
             position: absolute;
             max-width: 100%;
-            right: -7vw;
+            right: 0vw;
             top: 0;
             z-index: 1;
 
             @include desktop {
-                max-width: 90%;
-                right: 10vw;
+                max-width: 100%;
+                right: 12vw;
+            }
+
+            .dialog-box {
+                @include desktop {
+                    max-width: 100%;
+                }
             }
         }
 
         .character {
-            width: 33vh;
-            transform: translateX(27vw);
+            height: 53vh;
+            right: -14vw;
+            top: 30px;
+            position: relative;
 
             @include desktop {
-                position: relative;
-                right: 25vw;
+                right: 28vw;
             }
         }
     }

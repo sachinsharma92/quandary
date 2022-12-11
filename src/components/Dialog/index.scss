@@ -5,7 +5,7 @@
 .dialog-box {
     background: #fff;
     border-radius: 12px;
-    padding: 15px 20px;
+    padding: 15px 15px;
     width: max-content;
     max-width: 60%;
     position: relative;
@@ -19,7 +19,7 @@
         height: 21px;
         background: url('../../assets/images/dialog-pointer.png');
         content: '';
-        rotate: 90deg;
+        // rotate: 90deg;
     }
     p {
         margin: 0;
