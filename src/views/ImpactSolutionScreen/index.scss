@@ -44,6 +44,8 @@
     }
 
     .solution-selector {
+        cursor: pointer;
+
         @include desktop {
             width: 24.333%;
         }

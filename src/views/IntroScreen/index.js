@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.scss';
-import PictureColl from 'assets/images/picture_coll.svg';
+import PictureColl from 'assets/images/picture_coll.png';
 import { Button } from 'components/Button';
 import { motion } from 'framer-motion';
 import { ANIMATION } from 'utils/constants/index.js';
