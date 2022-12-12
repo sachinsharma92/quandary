@@ -98,12 +98,12 @@
 
             @include desktop {
                 translate: -180px 149px;
-                height: 60vh;
+                height: vh;
             }
 
             @include mobile {
                 position: relative;
-                height: 60vh;
+                height: 53vh;
             }
         }
     }
