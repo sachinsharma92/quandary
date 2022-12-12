@@ -81,7 +81,6 @@
         .character {
             position: absolute;
             width: 45vh;
-            transform: translateY(14vh);
 
             @include desktop {
                 position: relative;
@@ -126,12 +125,17 @@
 
             @include desktop {
                 display: flex;
-                max-width: 80vw;
+                max-width: 60vw;
                 margin: 20px auto 0;
                 gap: 0 14px;
             }
 
+            @include desktop-lg {
+                max-width: 50vw;
+            }
+
             > div {
+                cursor: pointer;
                 margin-bottom: 15px;
                 padding: 16px;
                 background: linear-gradient(
@@ -164,13 +168,16 @@
                 }
                 p {
                     margin: 0;
-                    font-family: Inter;
                     font-style: normal;
                     font-weight: 500;
                     font-size: 16px;
                     line-height: 16px;
                     text-align: center;
                     color: #ffffff;
+
+                    @include desktop {
+                        font-size: 18px;
+                    }
                 }
             }
         }

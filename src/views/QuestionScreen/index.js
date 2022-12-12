@@ -102,7 +102,7 @@ export const QuestionScreen = () => {
                             }}
                             exit={{
                                 opacity: 0,
-                                translateX: '100vw',
+                                translateX: desktopScreen ? null : '100vw',
                                 transition: {
                                     delay:
                                         currentStep === QUESTIONS.length - 1
