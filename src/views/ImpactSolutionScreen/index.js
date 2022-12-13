@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './index.scss';
 import {Button} from 'components/Button';
 import {AnimatePresence, motion} from 'framer-motion';
@@ -10,12 +10,17 @@ import {GC} from 'services/gameCenterService/index.js';
 
 export const ImpactSolutionScreen = () => {
     const history = useHistory();
-    const {decision = ''} = history.location.state || {};
+    const {decision = '', gameData = {}} = history.location.state || {};
     const [solution, setSolution] = useState(null);
 
     const onSelectSolution = useCallback((value) => {
         setSolution(value);
     }, []);
+
+    useEffect(() => {
+        if (!!gameData.lastRoute && !!gameData.postSolution)
+            history.replace('/game/thank-you');
+    }, [gameData]);
 
     return (
         <div className={'impact-solution-screen'}>
@@ -64,6 +69,7 @@ export const ImpactSolutionScreen = () => {
                                     ...existingGameData,
                                     postSolution: solution,
                                     timeTaken: TIMER_SECONDS - time,
+                                    lastRoute: window.location.pathname,
                                 };
                                 storage.set.gameData(gameData);
                                 console.log(gameData);

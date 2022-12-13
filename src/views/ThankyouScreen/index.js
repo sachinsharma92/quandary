@@ -8,7 +8,9 @@ import {GC} from 'services/gameCenterService';
 
 export const ThankyouScreen = () => {
     useEffect(() => {
-        setTimeout(GC.sendGameEndMessage, 4000);
+        setTimeout(() => {
+            GC.sendGameEndMessage();
+        }, 4000);
     }, []);
 
     return (

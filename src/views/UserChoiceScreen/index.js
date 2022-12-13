@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './index.scss';
 import {AnimatePresence, motion} from 'framer-motion';
 import {ANIMATION, SOLUTIONS, TIMER_SECONDS} from 'utils/constants/index.js';
@@ -12,6 +12,20 @@ export const UserChoiceScreen = () => {
     const history = useHistory();
     const [expandedSolutionId, setExpandedSolutionId] = useState(null);
     const [isSelected, setIsSelected] = useState([]);
+    const {gameData = {}} = history.location.state || {};
+
+    useEffect(() => {
+        //resume game level
+        if (
+            !!gameData?.lastRoute &&
+            !!gameData?.userChoice1 &&
+            !!gameData?.userChoice2
+        ) {
+            history.replace('/game/user-choice-preview', {
+                choices: [gameData.userChoice1, gameData.userChoice2],
+            });
+        }
+    }, [gameData]);
 
     const onToggleExpand = useCallback((id) => {
         setExpandedSolutionId((prev) => (prev === id ? null : id));
@@ -105,6 +119,7 @@ export const UserChoiceScreen = () => {
                                     userChoice1: isSelected[0],
                                     userChoice2: isSelected[1],
                                     timeTaken: TIMER_SECONDS - time,
+                                    lastRoute: window.location.pathname,
                                 };
                                 storage.set.gameData(gameData);
                                 console.log(gameData);

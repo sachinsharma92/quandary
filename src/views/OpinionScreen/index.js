@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './index.scss';
 import {Button} from 'components/Button';
 import {AnimatePresence, motion} from 'framer-motion';
@@ -16,7 +16,8 @@ import {GC} from 'services/gameCenterService/index.js';
 export const OpinionScreen = () => {
     const desktopScreen = useMediaQuery({query: '(min-width: 1024px)'});
     const history = useHistory();
-    const {selectedOptionsKey = ''} = history.location.state || {};
+    const {selectedOptionsKey = '', gameData = {}} =
+        history.location.state || {};
 
     const [currentStep, setCurrentStep] = useState(1);
     const [answers, setAnswers] = useState({
@@ -41,7 +42,38 @@ export const OpinionScreen = () => {
         },
         [currentStep],
     );
-    console.log('activeOpinion', answers);
+
+    useEffect(() => {
+        //resume game level
+        if (!!gameData.lastStep) {
+            if (gameData.lastStep < 3) {
+                setCurrentStep(gameData.lastStep + 1);
+            } else
+                history.replace('/game/final-decision', {
+                    selectedOptionsKey,
+                });
+        }
+    }, [gameData]);
+
+    const saveData = useCallback(() => {
+        let time = document.querySelector('.timer')?.getAttribute('data-value');
+
+        let existingGameData = storage.get.gameData();
+        let gameData = {
+            ...existingGameData,
+            opinions: {
+                ...existingGameData?.opinions,
+                ...answers,
+            },
+            timeTaken: TIMER_SECONDS - time,
+            lastRoute: window.location.pathname,
+            lastStep: currentStep,
+        };
+        storage.set.gameData(gameData);
+        console.log(gameData);
+        GC.sendGameDataSaveMessage(gameData);
+    }, [answers, currentStep]);
+
     return (
         <div className={'opinion-screen'}>
             <div style={{zIndex: 0}}>
@@ -128,27 +160,12 @@ export const OpinionScreen = () => {
                     >
                         <Button
                             onClick={() => {
+                                saveData();
                                 if (currentStep < 4)
                                     setCurrentStep(
                                         (prevState) => prevState + 1,
                                     );
                                 else {
-                                    let time = document
-                                        .querySelector('.timer')
-                                        ?.getAttribute('data-value');
-
-                                    let existingGameData =
-                                        storage.get.gameData();
-                                    let gameData = {
-                                        ...existingGameData,
-                                        opinions: {
-                                            ...answers,
-                                        },
-                                        timeTaken: TIMER_SECONDS - time,
-                                    };
-                                    storage.set.gameData(gameData);
-                                    console.log(gameData);
-                                    GC.sendGameDataSaveMessage(gameData);
                                     history.push('/game/final-decision', {
                                         selectedOptionsKey,
                                     });

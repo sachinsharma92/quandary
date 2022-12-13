@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import './index.scss';
 import {Button} from 'components/Button';
 import {AnimatePresence, motion} from 'framer-motion';
@@ -10,17 +10,27 @@ import {
 import {useHistory} from 'react-router-dom';
 import {Decision} from './components/Decision';
 import {storage} from 'services/storage/index.js';
-import {GC} from "../../services/gameCenterService/index.js";
+import {GC} from '../../services/gameCenterService/index.js';
 
 export const DecisionScreen = () => {
     const history = useHistory();
-    const {selectedOptionsKey = ''} = history.location.state || {};
+    const {selectedOptionsKey = '', gameData = {}} =
+        history.location.state || {};
 
     const [decision, setDecision] = useState(null);
 
     const onSelectDecision = useCallback((value) => {
         setDecision(value);
     }, []);
+
+    useEffect(() => {
+        //resume game level
+        if (!!gameData?.lastRoute && !!gameData?.finalDecision) {
+            history.replace('/game/decision-preview', {
+                decision: gameData.finalDecision,
+            });
+        }
+    }, [gameData]);
 
     return (
         <div className={'decision-screen'}>
@@ -83,6 +93,7 @@ export const DecisionScreen = () => {
                                     ...existingGameData,
                                     finalDecision: decision,
                                     timeTaken: TIMER_SECONDS - time,
+                                    lastRoute: window.location.pathname,
                                 };
                                 storage.set.gameData(gameData);
                                 console.log(gameData);

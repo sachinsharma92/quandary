@@ -12,7 +12,7 @@ export const SplashScreen = () => {
     const history = useHistory();
     return (
         <motion.div {...ANIMATION.ENTRY_ANIMATION} className={'splash-screen'}>
-            <Timer />
+            <Timer startTicker={false} />
             <motion.div {...ANIMATION.SLIDE_OUT_LEFT} className={'heading'}>
                 <p>
                     Three weeks ago, a few sheep started disappearing from our

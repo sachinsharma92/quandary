@@ -1,19 +1,52 @@
 import React, {useEffect} from 'react';
-import {Redirect, Route, Switch, useLocation} from 'react-router-dom';
+import {
+    Redirect,
+    Route,
+    Switch,
+    useHistory,
+    useLocation,
+} from 'react-router-dom';
 import {SplashScreen} from 'views/SplashScreen';
 import {AnimatePresence} from 'framer-motion';
 import {GC} from 'services/gameCenterService';
 import {GameRoutesScreen} from 'views/GameRoutesScreen/index.js';
+import {storage} from '../services/storage/index.js';
+import {TIMER_SECONDS} from '../utils/constants/index.js';
 
 export const AppRouter = () => {
     const location = useLocation();
+    const history = useHistory();
 
     useEffect(() => {
         GC.sendGameLoadMessage();
         window.addEventListener('message', GC.messageEventHandler);
-        return () =>
+        decideRouteFlow();
+        window.addEventListener('unload', updateTimerBeforeRefresh);
+        return () => {
             window.removeEventListener('message', GC.messageEventHandler);
+            window.removeEventListener('unload', updateTimerBeforeRefresh);
+        };
     }, []);
+    const decideRouteFlow = () => {
+        let gameData = storage.get.gameData();
+        if (!!gameData?.lastRoute) {
+            history.replace(gameData?.lastRoute, {
+                gameData,
+                choices: [gameData.userChoice1, gameData.userChoice2],
+                selectedOptionsKey: gameData.selectedOptionsKey,
+            });
+        }
+    };
+    const updateTimerBeforeRefresh = () => {
+        let el = document.querySelector('.timer');
+        let time = el?.getAttribute('data-value');
+        let data = storage.get.gameData();
+        if (data) {
+            data.timeTaken = TIMER_SECONDS - time;
+            storage.set.gameData(data);
+            GC.sendGameDataSaveMessage(data);
+        }
+    };
 
     return (
         <AnimatePresence>

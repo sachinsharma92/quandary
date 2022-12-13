@@ -60,6 +60,7 @@ body {
 #root {
     height: 100%;
 }
+
 .app-container {
     height: 100%;
     // background: linear-gradient(180deg, #12061c 0%, #0b0311 100%);
@@ -73,5 +74,51 @@ body {
         justify-content: center;
         align-self: center;
         width: 100%;
+    }
+}
+
+.resume-gameplay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    background: rgba(#10091a, 0.93);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .heading {
+        border-radius: 12px;
+        height: fit-content;
+        align-self: center;
+        backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
+        border: 1px solid #5a4c90;
+        padding: 16px 10px;
+        background: linear-gradient(
+            261.04deg,
+            rgba(90, 76, 144, 0.19) -5.42%,
+            rgba(43, 29, 80, 0) 94.95%
+        );
+        width: 45%;
+        @include desktop {
+            width: 422px;
+            margin: 0 auto;
+            cursor: pointer;
+        }
+
+        p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+            letter-spacing: -0.152174px;
+            color: #ffffff;
+            text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.06);
+            @include desktop {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
     }
 }

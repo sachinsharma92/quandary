@@ -1,24 +1,35 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './index.scss';
 import {Button} from 'components/Button';
 import {motion} from 'framer-motion';
-import {ANIMATION, IMPACTS} from 'utils/constants/index.js';
+import {ANIMATION, IMPACTS, TIMER_SECONDS} from 'utils/constants/index.js';
 import {useHistory} from 'react-router-dom';
 import {Dialog} from 'components/Dialog/index.js';
 import {useMediaQuery} from 'react-responsive';
 
 import FarmerImage from 'assets/images/farmer-full.png';
 import FarmerImageLarge from 'assets/images/farmer-full.png';
+import {storage} from '../../services/storage/index.js';
+import {GC} from '../../services/gameCenterService/index.js';
 
 export const ImpactScreen = () => {
     const desktopScreen = useMediaQuery({query: '(min-width: 1024px)'});
     const history = useHistory();
-    const {decision = ''} = history.location.state || {};
+    const {decision = '', gameData = {}} = history.location.state || {};
+
+    useEffect(() => {
+        //resume game level
+        if (!!gameData?.lastRoute) {
+            history.replace('/game/impact-solutions', {
+                decision: gameData?.finalDecision,
+            });
+        }
+    }, [gameData]);
 
     return (
         <div className={'impact-screen'}>
             <motion.div {...ANIMATION.REVEAL} className={'heading'}>
-                <p>{IMPACTS[decision].heading}</p>
+                <p>{IMPACTS[decision]?.heading}</p>
             </motion.div>
             <div className="contents">
                 <motion.div
@@ -40,7 +51,7 @@ export const ImpactScreen = () => {
                     }}
                     className={'dialog-container'}
                 >
-                    <Dialog text={IMPACTS[decision].statement} />
+                    <Dialog text={IMPACTS[decision]?.statement} />
                 </motion.div>
                 <motion.img
                     initial={{
@@ -76,6 +87,17 @@ export const ImpactScreen = () => {
             >
                 <Button
                     onClick={() => {
+                        let time = document
+                            .querySelector('.timer')
+                            ?.getAttribute('data-value');
+                        let existingGameData = storage.get.gameData();
+                        let gameData = {
+                            ...existingGameData,
+                            timeTaken: TIMER_SECONDS - time,
+                            lastRoute: window.location.pathname,
+                        };
+                        storage.set.gameData(gameData);
+                        GC.sendGameDataSaveMessage(gameData);
                         history.push('/game/impact-solutions', {
                             decision,
                         });

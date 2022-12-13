@@ -1,13 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './index.scss';
-import { Button } from 'components/Button';
-import { motion } from 'framer-motion';
-import { ANIMATION, IMPACTS } from 'utils/constants/index.js';
-import { useHistory } from 'react-router-dom';
+import {Button} from 'components/Button';
+import {motion} from 'framer-motion';
+import {ANIMATION, IMPACTS, TIMER_SECONDS} from 'utils/constants/index.js';
+import {useHistory} from 'react-router-dom';
+import {storage} from 'services/storage/index.js';
+import {GC} from 'services/gameCenterService/index.js';
 
 export const DecisionPreview = () => {
     const history = useHistory();
-    const { decision = '' } = history.location.state || {};
+    const {decision = '', gameData = {}} = history.location.state || {};
+
+    useEffect(() => {
+        //resume game level
+        if (!!gameData?.lastRoute && !!gameData?.finalDecision) {
+            history.replace('/game/impact', {
+                decision: gameData?.finalDecision,
+            });
+        }
+    }, [gameData]);
 
     return (
         <div className={'decision-preview-screen'}>
@@ -29,13 +40,13 @@ export const DecisionPreview = () => {
                             type: 'spring',
                         },
                     }}
-                    exit={{ scale: 0 }}
+                    exit={{scale: 0}}
                     src={IMPACTS[decision]?.icon}
                 />
                 <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1, transition: { delay: 0.7 } }}
-                    exit={{ opacity: 0 }}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1, transition: {delay: 0.7}}}
+                    exit={{opacity: 0}}
                 >
                     {IMPACTS[decision]?.label}
                 </motion.p>
@@ -57,6 +68,17 @@ export const DecisionPreview = () => {
                 <p>Let’s see what impact this solution had on the village.</p>
                 <Button
                     onClick={() => {
+                        let time = document
+                            .querySelector('.timer')
+                            ?.getAttribute('data-value');
+                        let existingGameData = storage.get.gameData();
+                        let gameData = {
+                            ...existingGameData,
+                            timeTaken: TIMER_SECONDS - time,
+                            lastRoute: window.location.pathname,
+                        };
+                        storage.set.gameData(gameData);
+                        GC.sendGameDataSaveMessage(gameData);
                         history.push('/game/impact', {
                             decision,
                         });

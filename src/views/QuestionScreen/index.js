@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import './index.scss';
 import {AnimatePresence, motion} from 'framer-motion';
 import {
@@ -20,6 +20,7 @@ import {GC} from 'services/gameCenterService/index.js';
 export const QuestionScreen = () => {
     const desktopScreen = useMediaQuery({query: '(min-width: 1024px)'});
     const history = useHistory();
+    const {gameData = {}} = history.location.state || {};
     const [currentStep, setCurrentStep] = useState(0);
     const bottomSheetRef = useRef();
     const [answers, setAnswers] = useState({
@@ -30,6 +31,46 @@ export const QuestionScreen = () => {
         5: '',
         6: '',
     });
+
+    useEffect(() => {
+        //resume game level
+        if (!!gameData.lastStep) {
+            if (gameData.lastStep < 5) {
+                setCurrentStep(gameData.lastStep + 1);
+                setAnswers(
+                    Object.keys(gameData)
+                        .filter((item) => item.indexOf('question') === 0)
+                        .reduce((acc, currentValue, index) => {
+                            acc[index + 1] = gameData[currentValue];
+                            return acc;
+                        }, {}),
+                );
+            } else history.replace('/game/user-choice');
+        }
+    }, [gameData]);
+
+    const saveData = useCallback(() => {
+        let time = document.querySelector('.timer')?.getAttribute('data-value');
+        let existingGameData = storage.get.gameData();
+        let answerObj = Object.values(answers).reduce(
+            (acc, currentValue, index) => {
+                acc[`question${index + 1}`] = currentValue;
+                return acc;
+            },
+            {},
+        );
+        let gameData = {
+            ...existingGameData,
+            ...answerObj,
+        };
+        gameData.timeTaken = TIMER_SECONDS - time;
+        gameData.lastRoute = window.location.pathname;
+        gameData.lastStep = currentStep;
+        console.log('Game Data', gameData);
+        storage.set.gameData(gameData);
+        GC.sendGameDataSaveMessage(gameData);
+    }, [answers, currentStep]);
+
     return (
         <motion.div
             {...ANIMATION.ENTRY_ANIMATION}
@@ -205,24 +246,10 @@ export const QuestionScreen = () => {
                         label={'Next'}
                         disabled={answers[currentStep + 1] === ''}
                         onClick={() => {
+                            saveData();
                             if (currentStep < QUESTIONS.length - 1) {
                                 setCurrentStep((prevState) => prevState + 1);
                             } else {
-                                let time = document
-                                    .querySelector('.timer')
-                                    ?.getAttribute('data-value');
-                                let gameData = Object.values(answers).reduce(
-                                    (acc, currentValue, index) => {
-                                        acc[`question${index + 1}`] =
-                                            currentValue;
-                                        return acc;
-                                    },
-                                    {},
-                                );
-                                gameData.timeTaken = TIMER_SECONDS - time;
-                                console.log('Game Data', gameData);
-                                storage.set.gameData(gameData);
-                                GC.sendGameDataSaveMessage(gameData);
                                 history.push('/game/user-choice');
                             }
                         }}

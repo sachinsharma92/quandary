@@ -1,13 +1,27 @@
-import React, {useMemo} from 'react';
+import React, {useEffect, useMemo} from 'react';
 import './index.scss';
 import {Button} from 'components/Button';
 import {motion} from 'framer-motion';
-import {ANIMATION, SOLUTIONS} from 'utils/constants/index.js';
+import {ANIMATION, SOLUTIONS, TIMER_SECONDS} from 'utils/constants/index.js';
 import {useHistory} from 'react-router-dom';
+import {storage} from '../../services/storage/index.js';
+import {GC} from '../../services/gameCenterService/index.js';
 
 export const UserChoicePreviewScreen = () => {
     const history = useHistory();
-    const {choices = []} = history.location.state || {};
+    let {choices = [], gameData} = history.location.state || {};
+    console.log(gameData, choices);
+
+    useEffect(() => {
+        //resume game level
+        if (
+            !!gameData?.lastRoute &&
+            !!gameData?.userChoice1 &&
+            !!gameData?.userChoice2
+        ) {
+            choices = [gameData.userChoice1, gameData.userChoice2];
+        }
+    }, [gameData]);
 
     const [choicesArr, selectedOptionsKey] = useMemo(() => {
         let arr = SOLUTIONS.filter((item) => choices.includes(item.id));
@@ -66,6 +80,18 @@ export const UserChoicePreviewScreen = () => {
                 </p>
                 <Button
                     onClick={() => {
+                        let time = document
+                            .querySelector('.timer')
+                            ?.getAttribute('data-value');
+                        let existingGameData = storage.get.gameData();
+                        let gameData = {
+                            ...existingGameData,
+                            timeTaken: TIMER_SECONDS - time,
+                            lastRoute: window.location.pathname,
+                            selectedOptionsKey,
+                        };
+                        storage.set.gameData(gameData);
+                        GC.sendGameDataSaveMessage(gameData);
                         history.push('/game/opinions', {
                             selectedOptionsKey,
                         });
