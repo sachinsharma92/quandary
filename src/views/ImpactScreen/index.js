@@ -76,7 +76,7 @@ export const ImpactScreen = () => {
             >
                 <Button
                     onClick={() => {
-                        history.push('/impact-solutions', {
+                        history.push('/game/impact-solutions', {
                             decision,
                         });
                     }}

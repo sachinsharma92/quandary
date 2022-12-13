@@ -1,0 +1,34 @@
+.timer {
+    display: flex;
+    z-index: 9999;
+    padding: 4px 11px;
+    width: fit-content;
+    margin: auto;
+    margin-top: 13px;
+    background: linear-gradient(
+        261.04deg,
+        rgba(90, 76, 144, 0.19) -5.42%,
+        rgba(43, 29, 80, 0) 94.95%
+    );
+    backdrop-filter: blur(17px);
+    border-radius: 12px;
+    border: 1px solid #5a4c90;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    p {
+        margin: 0;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        letter-spacing: -0.152174px;
+        color: #ffffff;
+    }
+    img {
+        margin-right: 5px;
+    }
+}

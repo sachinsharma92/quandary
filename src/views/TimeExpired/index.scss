@@ -1,0 +1,170 @@
+@import '../../styles/variables/colors';
+@import '../../styles/variables//mixins';
+
+.time-expired-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 64px 20px 40px 20px;
+    position: relative;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    &:before {
+        content: ' ';
+        background-image: url('../../assets/images/intro-animal-bg.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        filter: blur(6px);
+    }
+
+    .background-layer-2 {
+        height: 100%;
+        background: radial-gradient(
+            358.05% 119.02% at 50% -7.95%,
+            rgba(4, 6, 12, 0.58) 63.54%,
+            #04060c 100%
+        );
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(17, 13, 27, 0.88) 0%,
+            rgba(13, 5, 23, 0.88) 70.67%
+        );
+        mix-blend-mode: normal;
+    }
+
+    .heading {
+        z-index: 0;
+        height: fit-content;
+        align-self: center;
+        padding: 16px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        @include desktop {
+            width: 422px;
+            margin: 0 auto;
+        }
+
+        img {
+            width: 30%;
+            margin-bottom: 25px;
+        }
+
+        p {
+            margin: 0;
+            text-align: center;
+            letter-spacing: -0.152174px;
+            color: #ffffff;
+            text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.06);
+            font-weight: 400;
+            font-size: 26px;
+            line-height: 20px;
+            @include desktop {
+                font-size: 16px;
+                line-height: 24px;
+            }
+
+            &:nth-of-type(1) {
+                margin-bottom: 10px;
+            }
+
+            &:nth-of-type(2) {
+                opacity: 0.5;
+                font-size: 14px;
+                line-height: 20px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .bordered-heading {
+        margin-top: 5vh;
+        width: 100%;
+        border-radius: 12px;
+        height: fit-content;
+        align-self: center;
+        backdrop-filter: blur(17px);
+        -webkit-backdrop-filter: blur(17px);
+        border: 1px solid #5a4c90;
+        padding: 16px 10px;
+        background: linear-gradient(
+            261.04deg,
+            rgba(90, 76, 144, 0.19) -5.42%,
+            rgba(43, 29, 80, 0) 94.95%
+        );
+
+        @include desktop {
+            width: 422px;
+            margin: 0 auto;
+        }
+
+        p {
+            margin: 0;
+            font-size: 14px;
+            text-align: center;
+            letter-spacing: -0.152174px;
+            color: #ffffff;
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            line-height: 23px;
+            text-shadow: 0px 4px 2px rgba(0, 0, 0, 0.06);
+            @include desktop {
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+
+    .contents {
+        position: relative;
+        display: flex;
+        margin-top: 10vh;
+
+        .dialog-container {
+            position: absolute;
+            right: 7vw;
+            top: 20px;
+            z-index: 1;
+
+            @include desktop {
+                left: 39vw;
+                top: 60px;
+            }
+
+            .dialog-box {
+                padding: 15px 15px;
+
+                .pointer {
+                    top: -1.5vh;
+                }
+            }
+        }
+
+        .character {
+            height: 63vh;
+            right: 0vw;
+            top: 30px;
+            position: relative;
+
+            @include desktop {
+                right: -14vw;
+                height: 57vh;
+            }
+        }
+    }
+}

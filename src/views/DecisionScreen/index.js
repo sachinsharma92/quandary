@@ -2,7 +2,11 @@ import React, {useCallback, useState} from 'react';
 import './index.scss';
 import {Button} from 'components/Button';
 import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, FINAL_DECISIONS} from 'utils/constants/index.js';
+import {
+    ANIMATION,
+    FINAL_DECISIONS,
+    TIMER_SECONDS,
+} from 'utils/constants/index.js';
 import {useHistory} from 'react-router-dom';
 import {Decision} from './components/Decision';
 import {storage} from 'services/storage/index.js';
@@ -70,15 +74,19 @@ export const DecisionScreen = () => {
                     >
                         <Button
                             onClick={() => {
+                                let time = document
+                                    .querySelector('.timer')
+                                    ?.getAttribute('data-value');
                                 let existingGameData = storage.get.gameData();
                                 let gameData = {
                                     ...existingGameData,
                                     finalDecision: decision,
+                                    timeTaken: TIMER_SECONDS - time,
                                 };
                                 storage.set.gameData(gameData);
                                 console.log(gameData);
                                 GC.sendGameDataSaveMessage(gameData);
-                                history.push('/decision-preview', {
+                                history.push('/game/decision-preview', {
                                     decision,
                                 });
                             }}

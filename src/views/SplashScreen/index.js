@@ -1,11 +1,11 @@
 import React from 'react';
 import './index.scss';
 import Farmer from 'assets/images/farmer-full.png';
-import { Button } from 'components/Button';
-import { Dialog } from 'components/Dialog/index.js';
-import { useHistory } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ANIMATION } from 'utils/constants/index.js';
+import {Button} from 'components/Button';
+import {Dialog} from 'components/Dialog/index.js';
+import {useHistory} from 'react-router-dom';
+import {motion} from 'framer-motion';
+import {ANIMATION} from 'utils/constants/index.js';
 
 export const SplashScreen = () => {
     const history = useHistory();
@@ -53,7 +53,7 @@ export const SplashScreen = () => {
                             stiffness: 50,
                         },
                     }}
-                    exit={{ opacity: 0 }}
+                    exit={{opacity: 0}}
                     className={'character'}
                     src={Farmer}
                 />
@@ -72,8 +72,13 @@ export const SplashScreen = () => {
                 }}
                 className={'footer'}
             >
-                <p className='description'>The villagers need your help in solving this problem.</p>
-                <Button onClick={() => history.push('/intro')} label={'Next'} />
+                <p className="description">
+                    The villagers need your help in solving this problem.
+                </p>
+                <Button
+                    onClick={() => history.push('/game/intro')}
+                    label={'Next'}
+                />
             </motion.div>
         </motion.div>
     );

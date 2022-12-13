@@ -2,11 +2,11 @@ import React, {useCallback, useState} from 'react';
 import './index.scss';
 import {Button} from 'components/Button';
 import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, IMPACTS} from 'utils/constants';
+import {ANIMATION, IMPACTS, TIMER_SECONDS} from 'utils/constants';
 import {useHistory} from 'react-router-dom';
 import {Solution} from './components/Solution/index.js';
 import {storage} from 'services/storage/index.js';
-import {GC} from "services/gameCenterService/index.js";
+import {GC} from 'services/gameCenterService/index.js';
 
 export const ImpactSolutionScreen = () => {
     const history = useHistory();
@@ -55,15 +55,20 @@ export const ImpactSolutionScreen = () => {
                     >
                         <Button
                             onClick={() => {
+                                let time = document
+                                    .querySelector('.timer')
+                                    ?.getAttribute('data-value');
+
                                 let existingGameData = storage.get.gameData();
                                 let gameData = {
                                     ...existingGameData,
                                     postSolution: solution,
+                                    timeTaken: TIMER_SECONDS - time,
                                 };
                                 storage.set.gameData(gameData);
                                 console.log(gameData);
                                 GC.sendGameDataSaveMessage(gameData);
-                                history.push('/thank-you');
+                                history.push('/game/thank-you');
                             }}
                             label={'Next'}
                         />

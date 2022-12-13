@@ -66,7 +66,7 @@ export const UserChoicePreviewScreen = () => {
                 </p>
                 <Button
                     onClick={() => {
-                        history.push('/opinions', {
+                        history.push('/game/opinions', {
                             selectedOptionsKey,
                         });
                     }}

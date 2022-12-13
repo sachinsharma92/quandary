@@ -1,7 +1,12 @@
 import React, {useRef, useState} from 'react';
 import './index.scss';
 import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, OPTIONS, QUESTIONS} from 'utils/constants/index.js';
+import {
+    ANIMATION,
+    OPTIONS,
+    QUESTIONS,
+    TIMER_SECONDS,
+} from 'utils/constants/index.js';
 import {Button} from 'components/Button';
 import {Dialog} from 'components/Dialog/index.js';
 import InfoIcon from 'assets/images/info-icon.svg';
@@ -10,7 +15,7 @@ import {InfoContent} from 'components/InfoContent/index.js';
 import {useHistory} from 'react-router-dom';
 import {useMediaQuery} from 'react-responsive';
 import {storage} from 'services/storage/index.js';
-import {GC} from "services/gameCenterService/index.js";
+import {GC} from 'services/gameCenterService/index.js';
 
 export const QuestionScreen = () => {
     const desktopScreen = useMediaQuery({query: '(min-width: 1024px)'});
@@ -25,7 +30,6 @@ export const QuestionScreen = () => {
         5: '',
         6: '',
     });
-
     return (
         <motion.div
             {...ANIMATION.ENTRY_ANIMATION}
@@ -199,6 +203,9 @@ export const QuestionScreen = () => {
                             if (currentStep < QUESTIONS.length - 1) {
                                 setCurrentStep((prevState) => prevState + 1);
                             } else {
+                                let time = document
+                                    .querySelector('.timer')
+                                    ?.getAttribute('data-value');
                                 let gameData = Object.values(answers).reduce(
                                     (acc, currentValue, index) => {
                                         acc[`question${index + 1}`] =
@@ -207,10 +214,11 @@ export const QuestionScreen = () => {
                                     },
                                     {},
                                 );
+                                gameData.timeTaken = TIMER_SECONDS - time;
                                 console.log('Game Data', gameData);
                                 storage.set.gameData(gameData);
                                 GC.sendGameDataSaveMessage(gameData);
-                                history.push('/user-choice');
+                                history.push('/game/user-choice');
                             }
                         }}
                     />

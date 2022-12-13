@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import './index.scss';
 import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, SOLUTIONS} from 'utils/constants/index.js';
+import {ANIMATION, SOLUTIONS, TIMER_SECONDS} from 'utils/constants/index.js';
 import {SolutionAccordion} from 'components/SolutionAccordion';
 import {Button} from 'components/Button';
 import {useHistory} from 'react-router-dom';
@@ -96,16 +96,20 @@ export const UserChoiceScreen = () => {
                     >
                         <Button
                             onClick={() => {
+                                let time = document
+                                    .querySelector('.timer')
+                                    ?.getAttribute('data-value');
                                 let existingGameData = storage.get.gameData();
                                 let gameData = {
                                     ...existingGameData,
                                     userChoice1: isSelected[0],
                                     userChoice2: isSelected[1],
+                                    timeTaken: TIMER_SECONDS - time,
                                 };
                                 storage.set.gameData(gameData);
                                 console.log(gameData);
                                 GC.sendGameDataSaveMessage(gameData);
-                                history.push('/user-choice-preview', {
+                                history.push('/game/user-choice-preview', {
                                     choices: isSelected,
                                 });
                             }}

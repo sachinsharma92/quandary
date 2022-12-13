@@ -25,6 +25,7 @@ export default defineConfig({
             },
             {find: 'utils', replacement: path.resolve(__dirname, 'src/utils')},
             {find: 'views', replacement: path.resolve(__dirname, 'src/views')},
+            {find: 'hooks', replacement: path.resolve(__dirname, 'src/hooks')},
         ],
     },
     esbuild: {

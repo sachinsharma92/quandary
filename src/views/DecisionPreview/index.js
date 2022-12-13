@@ -57,7 +57,7 @@ export const DecisionPreview = () => {
                 <p>Let’s see what impact this solution had on the village.</p>
                 <Button
                     onClick={() => {
-                        history.push('/impact', {
+                        history.push('/game/impact', {
                             decision,
                         });
                     }}

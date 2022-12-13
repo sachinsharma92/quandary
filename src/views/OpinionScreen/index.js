@@ -2,7 +2,11 @@ import React, {useCallback, useState} from 'react';
 import './index.scss';
 import {Button} from 'components/Button';
 import {AnimatePresence, motion} from 'framer-motion';
-import {ANIMATION, VILLAGERS_OPINIONS} from 'utils/constants/index.js';
+import {
+    ANIMATION,
+    TIMER_SECONDS,
+    VILLAGERS_OPINIONS,
+} from 'utils/constants/index.js';
 import {useHistory} from 'react-router-dom';
 import {Opinion} from './components/Opinion';
 import {useMediaQuery} from 'react-responsive';
@@ -129,6 +133,10 @@ export const OpinionScreen = () => {
                                         (prevState) => prevState + 1,
                                     );
                                 else {
+                                    let time = document
+                                        .querySelector('.timer')
+                                        ?.getAttribute('data-value');
+
                                     let existingGameData =
                                         storage.get.gameData();
                                     let gameData = {
@@ -136,11 +144,12 @@ export const OpinionScreen = () => {
                                         opinions: {
                                             ...answers,
                                         },
+                                        timeTaken: TIMER_SECONDS - time,
                                     };
                                     storage.set.gameData(gameData);
                                     console.log(gameData);
                                     GC.sendGameDataSaveMessage(gameData);
-                                    history.push('/final-decision', {
+                                    history.push('/game/final-decision', {
                                         selectedOptionsKey,
                                     });
                                 }
