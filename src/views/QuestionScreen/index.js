@@ -61,13 +61,18 @@ export const QuestionScreen = () => {
                 <div className="user-info">
                     <AnimatePresence>
                         <motion.div
+                            style={
+                                desktopScreen && {
+                                    translateX: '-50%',
+                                }
+                            }
                             initial={{
                                 opacity: 0,
                                 translateY: '100vh',
                             }}
                             animate={{
                                 opacity: 1,
-                                translateY: '34vh',
+                                translateY: desktopScreen ? '-40vh' : '34vh',
                                 transition: {
                                     duration: 1,
                                     type: 'spring',

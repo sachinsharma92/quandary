@@ -43,13 +43,13 @@
             z-index: 1;
 
             @include desktop {
-                position: relative;
-                left: 0;
+                position: absolute;
+                left: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 flex-direction: column;
-                bottom: 180px;
+                bottom: 0;
             }
 
             p {
@@ -83,7 +83,7 @@
             width: 45vh;
 
             @include desktop {
-                position: relative;
+                //position: relative;
                 top: 60px;
                 left: 23vh;
                 width: 22vh;

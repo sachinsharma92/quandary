@@ -65,7 +65,7 @@
             .decision-selector {
                 @include desktop {
                     width: 392px;
-
+                    justify-content: space-between;
                     .decision {
                         max-width: 95%;
                         font-size: 16px;

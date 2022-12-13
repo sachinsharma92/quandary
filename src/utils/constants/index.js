@@ -6,7 +6,6 @@ import WifeImageLarge from '../../assets/images/housewife-full.png';
 import DoctorImageLarge from '../../assets/images/doctor-full.png';
 import ShopkeeperImageLarge from '../../assets/images/shopkeeper-full.png';
 
-
 // Mobile Images
 import FarmerImage from '../../assets/images/farmer.png';
 import TeacherImage from '../../assets/images/teacher.png';
@@ -31,7 +30,7 @@ export const ANIMATION = {
         },
         animate: {
             opacity: 1,
-            transition: { duration: 0.5 },
+            transition: {duration: 0.5},
         },
         exit: {
             opacity: 0,
@@ -43,11 +42,11 @@ export const ANIMATION = {
         },
         animate: {
             opacity: 1,
-            transition: { duration: 1, delay: 0.1 },
+            transition: {duration: 1, delay: 0.1},
         },
         exit: {
             x: '-100vw',
-            transition: { ease: 'easeInOut' },
+            transition: {ease: 'easeInOut'},
         },
     },
     SLIDE_IN_LEFT: {
@@ -58,11 +57,11 @@ export const ANIMATION = {
         animate: {
             opacity: 1,
             x: 0,
-            transition: { duration: 1 },
+            transition: {duration: 1},
         },
         exit: {
             x: '-100vw',
-            transition: { ease: 'easeInOut' },
+            transition: {ease: 'easeInOut'},
         },
     },
     REVEAL: {
@@ -71,7 +70,7 @@ export const ANIMATION = {
         },
         animate: {
             opacity: 1,
-            transition: { duration: 0.5, delay: 0.25 },
+            transition: {duration: 0.5, delay: 0.25},
         },
         exit: {
             opacity: 0,
@@ -259,6 +258,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Ramesh',
             characterImage: FarmerImage,
+            characterDesktopImage: FarmerImageLarge,
             opinions: [
                 {
                     id: 'trap',
@@ -279,6 +279,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Aasha',
             characterImage: WifeImage,
+            characterDesktopImage: WifeImageLarge,
             opinions: [
                 {
                     id: 'trap',
@@ -299,6 +300,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Sunita',
             characterImage: TeacherImage,
+            characterDesktopImage: TeacherImageLarge,
             opinions: [
                 {
                     id: 'trap',
@@ -319,6 +321,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Rakesh',
             characterImage: DoctorImage,
+            characterDesktopImage: DoctorImageLarge,
             opinions: [
                 {
                     id: 'trap',
@@ -341,6 +344,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Ramesh',
             characterImage: FarmerImage,
+            characterDesktopImage: FarmerImageLarge,
             opinions: [
                 {
                     id: 'poison',
@@ -361,6 +365,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Aasha',
             characterImage: WifeImage,
+            characterDesktopImage: WifeImageLarge,
             opinions: [
                 {
                     id: 'poison',
@@ -381,6 +386,7 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Sunita',
             characterImage: TeacherImage,
+            characterDesktopImage: TeacherImageLarge,
             opinions: [
                 {
                     id: 'poison',
@@ -401,6 +407,8 @@ export const VILLAGERS_OPINIONS = {
         {
             villagerName: 'Rakesh',
             characterImage: DoctorImage,
+            characterDesktopImage: DoctorImageLarge,
+
             opinions: [
                 {
                     id: 'poison',
