@@ -4,47 +4,39 @@
 .time-expired-screen {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 100%;
-    padding: 64px 20px 40px 20px;
+    padding: 15px 20px;
     overflow: hidden;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 9999;
-    background: #10091a;
+    background: #10091a url('../../assets/images/intro-animal-bg-lg.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @include mobile {
+        background-image: url('../../assets/images/intro-animal-bg.png');
+    }
+
+    @include desktop {
+        justify-content: flex-start;
+    }
 
     &:before {
         content: ' ';
-        background-image: url('../../assets/images/intro-animal-bg.png');
-        background-size: cover;
-        background-repeat: no-repeat;
         width: 100%;
         height: 100%;
         left: 0;
         top: 0;
         position: absolute;
-        filter: blur(6px);
-    }
-
-    .background-layer-2 {
-        height: 100%;
-        background: radial-gradient(
-            358.05% 119.02% at 50% -7.95%,
-            rgba(4, 6, 12, 0.58) 63.54%,
-            #04060c 100%
-        );
-        width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
         background: linear-gradient(
             180deg,
-            rgba(17, 13, 27, 0.88) 0%,
-            rgba(13, 5, 23, 0.88) 70.67%
+            rgba(17, 13, 27, 0.87) 0%,
+            rgba(13, 5, 23, 0.87) 70.67%
         );
-        mix-blend-mode: normal;
     }
 
     .heading {
@@ -63,6 +55,11 @@
         img {
             width: 30%;
             margin-bottom: 25px;
+
+            @include desktop {
+                width: 20px;
+                margin: 0 auto 30px;
+            }
         }
 
         p {
@@ -74,8 +71,9 @@
             font-weight: 400;
             font-size: 26px;
             line-height: 20px;
+
             @include desktop {
-                font-size: 16px;
+                font-size: 26px;
                 line-height: 24px;
             }
 
@@ -88,12 +86,16 @@
                 font-size: 14px;
                 line-height: 20px;
                 margin-bottom: 20px;
+
+                @include desktop {
+                    text-transform: uppercase;
+                }
             }
         }
     }
 
     .bordered-heading {
-        margin-top: 5vh;
+        // margin-top: 5vh;
         width: 100%;
         border-radius: 12px;
         height: fit-content;
@@ -134,21 +136,32 @@
     .contents {
         position: relative;
         display: flex;
-        margin-top: 10vh;
+        margin-top: 2vh;
+
+        @include desktop {
+            width: 540px;
+            margin: 0 auto;
+        }
 
         .dialog-container {
             position: absolute;
-            right: 7vw;
+            right: 0;
+            left: 0;
             top: 20px;
             z-index: 1;
 
             @include desktop {
-                left: 39vw;
-                top: 60px;
+                left: 0vw;
+                top: 40px;
             }
 
             .dialog-box {
                 padding: 15px 15px;
+                max-width: 160px;
+
+                @include desktop {
+                    max-width: 200px;
+                }
 
                 .pointer {
                     top: -1.5vh;
@@ -157,13 +170,14 @@
         }
 
         .character {
-            height: 63vh;
-            right: 0vw;
+            height: 55vh;
+            right: -10vw;
             top: 30px;
             position: relative;
 
             @include desktop {
-                right: -14vw;
+                left: -18vw;
+                right: auto;
                 height: 57vh;
             }
         }

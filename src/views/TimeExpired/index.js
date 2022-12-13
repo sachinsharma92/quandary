@@ -1,12 +1,12 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import './index.scss';
-import {motion} from 'framer-motion';
-import {ANIMATION, TIMER_SECONDS} from 'utils/constants';
+import { motion } from 'framer-motion';
+import { ANIMATION, TIMER_SECONDS } from 'utils/constants';
 import ClockIcon from 'assets/images/Clock.svg';
-import {Dialog} from 'components/Dialog';
+import { Dialog } from 'components/Dialog';
 import FarmerImage from 'assets/images/farmer-full.png';
-import {storage} from 'services/storage';
-import {GC} from 'services/gameCenterService';
+import { storage } from 'services/storage';
+import { GC } from 'services/gameCenterService';
 
 export const TimeExpired = () => {
     useEffect(() => {
@@ -27,7 +27,6 @@ export const TimeExpired = () => {
             {...ANIMATION.ENTRY_ANIMATION}
             className={'time-expired-screen'}
         >
-            <div className="background-layer-2" />
             <motion.div {...ANIMATION.REVEAL} className={'heading'}>
                 <img src={ClockIcon} />
                 <motion.p
@@ -87,7 +86,7 @@ export const TimeExpired = () => {
                             stiffness: 50,
                         },
                     }}
-                    exit={{opacity: 0}}
+                    exit={{ opacity: 0 }}
                     className={'character'}
                     src={FarmerImage}
                 />

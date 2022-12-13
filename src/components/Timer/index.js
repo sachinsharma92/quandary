@@ -1,12 +1,12 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './index.scss';
-import {TIMER_SECONDS} from 'utils/constants';
+import { TIMER_SECONDS } from 'utils/constants';
 import ClockIcon from 'assets/images/Clock.svg';
-import {AnimatePresence, motion} from 'framer-motion';
-import {storage} from '../../services/storage/index.js';
-import {TimeExpired} from '../../views/TimeExpired';
+import { AnimatePresence, motion } from 'framer-motion';
+import { storage } from '../../services/storage/index.js';
+import { TimeExpired } from '../../views/TimeExpired';
 
-export const Timer = ({startTicker = true}) => {
+export const Timer = ({ startTicker = true }) => {
     const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
     const [hasClicked, setHasClicked] = useState(true);
     const interval = useRef(0);
@@ -36,7 +36,7 @@ export const Timer = ({startTicker = true}) => {
     return timeLeft !== 0 ? (
         <>
             <motion.div
-                initial={{opacity: 1}}
+                initial={{ opacity: 1 }}
                 className={'timer'}
                 data-value={timeLeft}
             >
@@ -50,8 +50,8 @@ export const Timer = ({startTicker = true}) => {
                             timeLeft < 60
                                 ? '#db3131'
                                 : timeLeft < 241
-                                ? '#ea9d04'
-                                : '#fff',
+                                    ? '#ea9d04'
+                                    : '#fff',
                         opacity: 1,
                         transition: {
                             duration: 0.9,
@@ -71,8 +71,8 @@ export const Timer = ({startTicker = true}) => {
                         initial={{
                             opacity: 0,
                         }}
-                        animate={{opacity: 1, transition: {duration: 0.6}}}
-                        exit={{opacity: 0}}
+                        animate={{ opacity: 1, transition: { duration: 0.6 } }}
+                        exit={{ opacity: 0 }}
                         onClick={() => {
                             setHasClicked(true);
                             interval.current = setInterval(() => {
