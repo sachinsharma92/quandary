@@ -6,11 +6,13 @@ import {Dialog} from 'components/Dialog/index.js';
 import {useHistory} from 'react-router-dom';
 import {motion} from 'framer-motion';
 import {ANIMATION} from 'utils/constants/index.js';
+import {Timer} from 'components/Timer';
 
 export const SplashScreen = () => {
     const history = useHistory();
     return (
         <motion.div {...ANIMATION.ENTRY_ANIMATION} className={'splash-screen'}>
+            <Timer />
             <motion.div {...ANIMATION.SLIDE_OUT_LEFT} className={'heading'}>
                 <p>
                     Three weeks ago, a few sheep started disappearing from our
