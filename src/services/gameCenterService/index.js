@@ -1,5 +1,5 @@
 import {storage as configStorage} from '../storage';
-import {TIMER_SECONDS} from 'utils/constants';
+import {NEW_DATA_EVENT, TIMER_SECONDS} from 'utils/constants';
 
 const GAME_MOUNT = 'GAME_MOUNT';
 const GAME_DATA_SET = 'GAME_DATA_SET';
@@ -42,6 +42,8 @@ const messageEventHandler = (event) => {
             ? TIMER_SECONDS - gameLevelData?.totalTimeTaken
             : 0,
     );
+    //custom storage event dispatch for resuming game
+    window.dispatchEvent(new Event(NEW_DATA_EVENT));
 
     // sending start game event
     sendGameDataSetMessage();

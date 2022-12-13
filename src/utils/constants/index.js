@@ -22,6 +22,7 @@ import Fence from '../../assets/images/fence.svg';
 import GuardDp from '../../assets/images/guard-profile.png';
 
 export const TIMER_SECONDS = 480;
+export const NEW_DATA_EVENT = 'NEW_DATA_EVENT';
 
 export const ANIMATION = {
     ENTRY_ANIMATION: {

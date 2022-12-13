@@ -6,7 +6,7 @@ import {BrowserRouter} from 'react-router-dom';
 import {storage} from './services/storage/index.js';
 
 // reset the local storage on startup
-// storage.destroy.all();
+storage.destroy.all();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
