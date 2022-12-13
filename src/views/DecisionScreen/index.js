@@ -10,6 +10,7 @@ import {
 import {useHistory} from 'react-router-dom';
 import {Decision} from './components/Decision';
 import {storage} from 'services/storage/index.js';
+import {GC} from "../../services/gameCenterService/index.js";
 
 export const DecisionScreen = () => {
     const history = useHistory();
