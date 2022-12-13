@@ -1,7 +1,7 @@
 const AUTH_TOKEN_KEY = 'auth_token';
 const GAME_KEY = import.meta.env.VITE_GAME_NAME;
 const GAMEPLAY_ID = 'gameplay_id';
-const LEVEL_DATA_KEY = 'level_data';
+const GAME_DATA_KEY = 'game_data';
 const TIME_REMAINING = 'time_remaining';
 
 const setItem = (key, data) => localStorage.setItem(key, JSON.stringify(data));
@@ -14,7 +14,7 @@ const set = {
     authToken: (token) => setItem(AUTH_TOKEN_KEY, token),
     gameplayId: (id) => setItem(GAMEPLAY_ID, id),
     gameId: (id) => setItem(GAME_KEY, id),
-    levelData: (data) => setItem(LEVEL_DATA_KEY, data),
+    gameData: (data) => setItem(GAME_DATA_KEY, data),
     timeRemaining: (time) => setItem(TIME_REMAINING, time),
 };
 
@@ -22,7 +22,7 @@ const get = {
     authToken: () => getItem(AUTH_TOKEN_KEY),
     gameplayId: () => getItem(GAMEPLAY_ID),
     gameId: () => getItem(GAME_KEY),
-    levelData: () => getItem(LEVEL_DATA_KEY),
+    gameData: () => getItem(GAME_DATA_KEY),
     timeRemaining: () => getItem(TIME_REMAINING),
 };
 
@@ -31,7 +31,7 @@ const destroy = {
     authToken: () => removeItem(AUTH_TOKEN_KEY),
     gameplayId: () => removeItem(GAMEPLAY_ID),
     gameId: () => removeItem(AUTH_TOKEN_KEY),
-    levelData: () => removeItem(LEVEL_DATA_KEY),
+    gameData: () => removeItem(GAME_DATA_KEY),
 };
 
 export const storage = {

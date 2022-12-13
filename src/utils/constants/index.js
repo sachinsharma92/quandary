@@ -22,7 +22,7 @@ import HousewifeDp from '../../assets/images/housewife-profile.png';
 import Fence from '../../assets/images/fence.svg';
 import GuardDp from '../../assets/images/guard-profile.png';
 
-export const TIMER_SECONDS = 360;
+export const TIMER_SECONDS = 480;
 
 export const ANIMATION = {
     ENTRY_ANIMATION: {

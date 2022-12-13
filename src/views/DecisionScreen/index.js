@@ -1,14 +1,15 @@
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useState} from 'react';
 import './index.scss';
-import { Button } from 'components/Button';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ANIMATION, FINAL_DECISIONS } from 'utils/constants/index.js';
-import { useHistory } from 'react-router-dom';
-import { Decision } from './components/Decision';
+import {Button} from 'components/Button';
+import {AnimatePresence, motion} from 'framer-motion';
+import {ANIMATION, FINAL_DECISIONS} from 'utils/constants/index.js';
+import {useHistory} from 'react-router-dom';
+import {Decision} from './components/Decision';
+import {storage} from 'services/storage/index.js';
 
 export const DecisionScreen = () => {
     const history = useHistory();
-    const { selectedOptionsKey = '' } = history.location.state || {};
+    const {selectedOptionsKey = ''} = history.location.state || {};
 
     const [decision, setDecision] = useState(null);
 
@@ -18,7 +19,7 @@ export const DecisionScreen = () => {
 
     return (
         <div className={'decision-screen'}>
-            <div style={{ zIndex: 0 }}>
+            <div style={{zIndex: 0}}>
                 <div className={'heading'}>
                     <motion.p {...ANIMATION.REVEAL}>
                         Now choose your final decision
@@ -39,7 +40,7 @@ export const DecisionScreen = () => {
                                 stiffness: 50,
                             },
                         }}
-                        exit={{ opacity: 0 }}
+                        exit={{opacity: 0}}
                         className={'decisions'}
                     >
                         {FINAL_DECISIONS[selectedOptionsKey]?.map((item) => (
@@ -61,14 +62,22 @@ export const DecisionScreen = () => {
                         }}
                         animate={{
                             opacity: 1,
-                            transition: { duration: 0.3 },
+                            transition: {duration: 0.3},
                         }}
-                        exit={{ opacity: 0 }}
-                        style={{ alignSelf: 'flex-end' }}
+                        exit={{opacity: 0}}
+                        style={{alignSelf: 'flex-end'}}
                         className="btn-center"
                     >
                         <Button
                             onClick={() => {
+                                let existingGameData = storage.get.gameData();
+                                let gameData = {
+                                    ...existingGameData,
+                                    finalDecision: decision,
+                                };
+                                storage.set.gameData(gameData);
+                                console.log(gameData);
+                                GC.sendGameDataSaveMessage(gameData);
                                 history.push('/decision-preview', {
                                     decision,
                                 });

@@ -1,10 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useState} from 'react';
 import './index.scss';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ANIMATION, SOLUTIONS } from 'utils/constants/index.js';
-import { SolutionAccordion } from 'components/SolutionAccordion';
-import { Button } from 'components/Button';
-import { useHistory } from 'react-router-dom';
+import {AnimatePresence, motion} from 'framer-motion';
+import {ANIMATION, SOLUTIONS} from 'utils/constants/index.js';
+import {SolutionAccordion} from 'components/SolutionAccordion';
+import {Button} from 'components/Button';
+import {useHistory} from 'react-router-dom';
+import {storage} from 'services/storage/index.js';
+import {GC} from 'services/gameCenterService/index.js';
 
 export const UserChoiceScreen = () => {
     const history = useHistory();
@@ -14,7 +16,6 @@ export const UserChoiceScreen = () => {
     const onToggleExpand = useCallback((id) => {
         setExpandedSolutionId((prev) => (prev === id ? null : id));
     }, []);
-
     const onToggleSelect = useCallback(
         (id) => {
             let updatedState = [...isSelected];
@@ -34,7 +35,7 @@ export const UserChoiceScreen = () => {
             {...ANIMATION.ENTRY_ANIMATION}
             className={'user-choice-container'}
         >
-            <div style={{ zIndex: 0 }}>
+            <div style={{zIndex: 0}}>
                 <motion.div {...ANIMATION.REVEAL} className={'heading'}>
                     <p>
                         The villagers have suggested 3 possible solutions to fix
@@ -87,18 +88,27 @@ export const UserChoiceScreen = () => {
                         }}
                         animate={{
                             opacity: 1,
-                            transition: { duration: 0.3 },
+                            transition: {duration: 0.3},
                         }}
-                        exit={{ opacity: 0 }}
-                        style={{ alignSelf: 'flex-end' }}
+                        exit={{opacity: 0}}
+                        style={{alignSelf: 'flex-end'}}
                         className="btn-center"
                     >
                         <Button
-                            onClick={() =>
+                            onClick={() => {
+                                let existingGameData = storage.get.gameData();
+                                let gameData = {
+                                    ...existingGameData,
+                                    userChoice1: isSelected[0],
+                                    userChoice2: isSelected[1],
+                                };
+                                storage.set.gameData(gameData);
+                                console.log(gameData);
+                                GC.sendGameDataSaveMessage(gameData);
                                 history.push('/user-choice-preview', {
                                     choices: isSelected,
-                                })
-                            }
+                                });
+                            }}
                             label={'Next'}
                         />
                     </motion.div>

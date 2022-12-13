@@ -34,7 +34,7 @@ const messageEventHandler = (event) => {
     // Saving authToken & gameplayId from Assessment centre
     const {user, gameId, gameLevelData} = event.data;
     configStorage.set.gameId(gameId);
-    configStorage.set.levelData(gameLevelData);
+    configStorage.set.gameData(gameLevelData);
     configStorage.set.timeRemaining(
         gameLevelData?.totalTimeTaken === undefined
             ? TIMER_SECONDS

@@ -1,17 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, {useRef, useState} from 'react';
 import './index.scss';
-import { AnimatePresence, motion } from 'framer-motion';
-import { ANIMATION, OPTIONS, QUESTIONS } from 'utils/constants/index.js';
-import { Button } from 'components/Button';
-import { Dialog } from 'components/Dialog/index.js';
+import {AnimatePresence, motion} from 'framer-motion';
+import {ANIMATION, OPTIONS, QUESTIONS} from 'utils/constants/index.js';
+import {Button} from 'components/Button';
+import {Dialog} from 'components/Dialog/index.js';
 import InfoIcon from 'assets/images/info-icon.svg';
-import { BottomSheet } from 'components/BottomSheet/index.js';
-import { InfoContent } from 'components/InfoContent/index.js';
-import { useHistory } from 'react-router-dom';
-import { useMediaQuery } from 'react-responsive'
+import {BottomSheet} from 'components/BottomSheet/index.js';
+import {InfoContent} from 'components/InfoContent/index.js';
+import {useHistory} from 'react-router-dom';
+import {useMediaQuery} from 'react-responsive';
+import {storage} from 'services/storage/index.js';
+import {GC} from "services/gameCenterService/index.js";
 
 export const QuestionScreen = () => {
-    const desktopScreen = useMediaQuery({ query: '(min-width: 1024px)' })
+    const desktopScreen = useMediaQuery({query: '(min-width: 1024px)'});
     const history = useHistory();
     const [currentStep, setCurrentStep] = useState(0);
     const bottomSheetRef = useRef();
@@ -52,7 +54,7 @@ export const QuestionScreen = () => {
                     </motion.div>
                 </AnimatePresence>
 
-                <div className='user-info'>
+                <div className="user-info">
                     <AnimatePresence>
                         <motion.div
                             initial={{
@@ -115,7 +117,12 @@ export const QuestionScreen = () => {
                                 },
                             }}
                             className={'character'}
-                            src={!desktopScreen ? QUESTIONS[currentStep].characterImage : QUESTIONS[currentStep].characterDesktopImage}
+                            src={
+                                !desktopScreen
+                                    ? QUESTIONS[currentStep].characterImage
+                                    : QUESTIONS[currentStep]
+                                          .characterDesktopImage
+                            }
                         />
                     </AnimatePresence>
                 </div>
@@ -151,7 +158,7 @@ export const QuestionScreen = () => {
                             onClick={() => {
                                 bottomSheetRef.current.open();
                             }}
-                            whileTap={{ scale: 1.15 }}
+                            whileTap={{scale: 1.15}}
                             src={InfoIcon}
                         />
                     </p>
@@ -168,10 +175,11 @@ export const QuestionScreen = () => {
                                     scale: 1.05,
                                 }}
                                 key={index}
-                                className={`${answers[currentStep + 1] === item
-                                    ? 'active'
-                                    : ''
-                                    }`}
+                                className={`${
+                                    answers[currentStep + 1] === item
+                                        ? 'active'
+                                        : ''
+                                }`}
                             >
                                 <p>{item}</p>
                             </motion.div>
@@ -180,7 +188,7 @@ export const QuestionScreen = () => {
                 </div>
 
                 <div className={'villager-count'}>
-                    <div className='pager-style'>
+                    <div className="pager-style">
                         <span>{currentStep + 1}</span>
                         <span>/{QUESTIONS.length} villager</span>
                     </div>
@@ -190,7 +198,20 @@ export const QuestionScreen = () => {
                         onClick={() => {
                             if (currentStep < QUESTIONS.length - 1) {
                                 setCurrentStep((prevState) => prevState + 1);
-                            } else history.push('/user-choice');
+                            } else {
+                                let gameData = Object.values(answers).reduce(
+                                    (acc, currentValue, index) => {
+                                        acc[`question${index + 1}`] =
+                                            currentValue;
+                                        return acc;
+                                    },
+                                    {},
+                                );
+                                console.log('Game Data', gameData);
+                                storage.set.gameData(gameData);
+                                GC.sendGameDataSaveMessage(gameData);
+                                history.push('/user-choice');
+                            }
                         }}
                     />
                 </div>

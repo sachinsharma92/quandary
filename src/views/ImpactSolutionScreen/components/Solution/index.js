@@ -30,7 +30,7 @@ export const Solution = ({
                 },
             }}
             exit={{opacity: 0, translateY: '10vh'}}
-            onClick={() => onSelectSolution(id)}
+            onClick={() => onSelectSolution(text)}
             className={`solution-selector ${isSelected ? 'active' : ''}`}
         >
             <p className={'title'}>Option #{id}</p>
